@@ -1,0 +1,113 @@
+version: '3.8'
+services:
+  zookeeper:
+    image: 'wurstmeister/zookeeper:latest'
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    volumes:
+      - 'zookeeper_data:/bitnami'
+  kafka:
+    image: 'wurstmeister/kafka:latest'
+    ports:
+      - ${KAFKA_PORT}:${KAFKA_PORT}
+    volumes:
+      - 'kafka_data:/bitnami'
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_HOST_NAME=localhost
+    depends_on:
+      - zookeeper
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+    volumes:
+      - mongoDB:/data
+
+  postgresql:
+    image: 'bitnami/postgresql:latest'
+    restart: always
+    ports:
+      - ${POSTGRESQL_PORT}:${POSTGRESQL_PORT}
+    environment:
+      POSTGRESQL_USERNAME: ${POSTGRESQL_USERNAME}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+      POSTGRESQL_DATABASE: ${POSTGRESQL_DATABASE}
+    volumes:
+      - progresDB:/data
+
+  # nginx:
+  #   depends_on:
+  #     - admin
+  #     - client
+  #     - proxy
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: ./nginx
+  #   restart: always
+  #   ports:
+  #     - ${NGINX_PORT}:${NGINX_PORT}
+  #   volumes:
+  #     - ./nginx:/app/nginx
+
+  proxy:
+    depends_on:
+      - auth
+    build:
+      dockerfile: Dockerfile
+      context: ./services/proxy
+    restart: always
+    ports:
+      - ${PROXY_PORT}:${PROXY_PORT}
+    volumes:
+      - ./nginx:/app/nginx
+  auth:
+    build:
+      context: ./services/auth
+      dockerfile: Dockerfile
+    volumes:
+      - ./services/auth:/app/services/auth
+      - /app/services/auth/node_modules
+    depends_on:
+      - postgresql
+      - mongo
+      - kafka
+    ports:
+      - '8080:8080'
+    env_file:
+      - ./services/auth/.env
+
+  # client:
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./client:/app/client
+  #     - /app/client/node_modules
+  #     - /app/client/.next
+  #   ports:
+  #     - ${CLIENT_PORT}:${CLIENT_PORT}
+
+  # admin:
+  #   build:
+  #     context: ./admin
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./admin:/app/admin
+  #     - /app/admin/node_modules
+  #   ports:
+  #     - ${ADMIN_PORT}:${ADMIN_PORT}
+volumes:
+  progresDB:
+  redisDB:
+  mongoDB:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
