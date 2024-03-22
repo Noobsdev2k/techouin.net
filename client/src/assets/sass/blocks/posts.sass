@@ -1,0 +1,118 @@
+.posts
+	&-title
+		margin-bottom: 40px
+	&-item
+		display: flex
+		position: relative
+		padding-bottom: 40px
+		border-bottom: 1px solid $cl20
+		align-items: center
+		+m
+			display: block
+			padding-bottom: 20px
+		&:not(:last-child)
+			margin-bottom: 40px
+			+m
+				margin-bottom: 80px
+	&-preview
+		display: block
+		margin-right: 30px
+		align-self: stretch
+		flex: 0 0 260px
+		+m
+			margin: 0 0 20px
+	&-pic
+		width: 100%
+		height: 100%
+		object-fit: cover
+	&-inner
+		display: flex
+		padding: 14px 0
+		flex-direction: column
+		align-items: flex-start
+		flex: 1 1 auto
+	&-caption,
+	&-date
+		color: $gray 
+	&-caption
+		margin-bottom: 10px
+		transition: color .2s 
+		&[href]
+			&:hover
+				color: $cl 
+	&-name
+		transition: opacity .2s 
+		&[href]
+			&:hover
+				opacity: .6
+	&-content
+		margin-top: 20px
+	&-meta
+		display: flex
+		width: 100%
+		margin-top: 40px
+		+m
+			margin-top: 20px
+			justify-content: space-between
+	&-date
+		margin-right: 62px
+		+m
+			margin-right: 20px
+	&-cell
+		&:nth-child(1)
+			padding-top: 8px
+			flex: 0 0 190px
+			+m
+				margin-bottom: 20px
+				padding: 0
+		&:nth-child(2)
+			margin-right: 40px
+			flex: 1 1 auto
+			+m
+				margin: 0 0 20px
+		&:nth-child(3)
+			padding-top: 8px
+			flex: 0 0 150px
+			+m
+				padding: 0
+	
+	&_simple &-item
+		padding-bottom: 60px
+		align-items: flex-start
+		+m
+			padding-bottom: 20px
+		&:not(:last-child)
+			margin-bottom: 60px
+			+m
+				margin-bottom: 80px
+	&_simple &-date
+		margin: 0
+	
+	&_user &-item
+		+d
+			flex-wrap: wrap
+	&_user &-details
+		display: flex
+		margin-bottom: 20px
+		align-self: flex-end
+		flex: 0 0 190px
+		+d
+			margin-bottom: 30px
+			flex: 0 0 100%
+		+m
+			margin-bottom: 20px
+	&_user &-preview
+		flex: 0 0 40%
+		+m
+			height: 235px
+	&_user &-inner
+		+d
+			flex: 0 0 calc(60% - 30px)
+	&_user &-date
+		position: absolute
+		top: 14px
+		left: 0
+		+d
+			position: static
+	
+		

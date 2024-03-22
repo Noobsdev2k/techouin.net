@@ -1,0 +1,36 @@
+.field
+	position: relative
+	&-input,
+	&-textarea,
+	&-select
+		width: 100%
+		border: 2px solid $bg
+		+work
+		font-weight: 500 
+		font-size: 12px
+		letter-spacing: 1px
+		text-transform: uppercase 
+		transition: border-color .2s 
+		&::placeholder
+			color: $cl
+		&:focus
+			border-color: $cl
+	&-input,
+	&-select
+		height: 96px
+		padding: 0 30px
+	&-textarea
+		height: 220px
+		padding: 40px 30px
+		resize: none
+	&-actions
+		display: flex
+		position: absolute
+		right: 20px
+		bottom: 20px
+	&-btn
+		margin-left: 20px
+	
+	&_actions &-textarea
+		padding-bottom: 80px 
+	

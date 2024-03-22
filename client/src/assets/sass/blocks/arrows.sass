@@ -1,0 +1,55 @@
+.arrows
+	display: flex
+	width: 160px
+	&-item
+		width: 50%
+		height: 40px
+		font-size: 0
+		transition: background .2s
+		&:hover
+			background: $gray
+			.icon
+				fill: $cl
+		.icon
+			font-size: 10px
+			fill: $cl
+			transition: fill .2s
+	
+	&_sm
+		min-width: 94px
+		width: 94px
+	
+	&_lg
+		width: 276px
+	&_lg &-item
+		height: 170px
+		
+	&_black &-item
+		background: transparent
+		&:hover
+			background: $gray
+		.icon
+			fill: $cl
+		
+	&_white &-item
+		background: transparent
+		&:hover
+			background: $gray
+			.icon
+				fill: $cl
+		.icon
+			fill: white
+	
+	&_bg#{&}_black &-item
+		background: $cl
+		&:hover
+			background: $gray
+		.icon
+			fill: white
+
+	&_bg#{&}_white &-item
+		background: white
+		&:hover
+			background: $gray
+		.icon
+			fill: $cl

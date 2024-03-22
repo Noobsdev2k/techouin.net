@@ -1,0 +1,30 @@
+.carousel
+	position: relative
+	transform: translate3d(0,0,0)
+	&-price
+		position: absolute
+		right: 22px
+		bottom: 30px
+		+roboto
+		font-size: 12px
+	&-pic
+		width: 100%
+
+	.slick-dots
+		display: flex
+		position: absolute
+		left: 22px
+		bottom: 34px
+		li
+			margin-right: 7px
+			&.slick-active
+				button
+					background: $cl 
+		button
+			display: block
+			width: 7px
+			height: 7px
+			border-radius: 50% 
+			background: $gray
+			transition: background .2s 
+			font-size: 0

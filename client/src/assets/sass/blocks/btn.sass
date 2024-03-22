@@ -1,0 +1,67 @@
+.btn
+	display: inline-block
+	padding: 14px 18px
+	background: $cl
+	border: 2px solid $cl
+	+work
+	font-size: 12px 
+	color: white  
+	text-transform: uppercase
+	line-height: 1.2
+	text-align: center
+	letter-spacing: 1px
+	transition: all .2s
+	&:hover
+		background: $gray
+		border-color: $gray
+		color: $cl 
+		.icon
+			fill: $cl
+	&-span,
+	.icon
+		display: inline-block
+		vertical-align: middle
+	&-span
+		font-size: 12px
+	.icon
+		margin: -2px 0
+		font-size: 14px
+		fill: white
+		transition: fill .2s
+		&-arrow-left
+			font-size: 8px
+		&-heart,
+		&-heart-filled
+			font-size: 18px
+	.icon + &-span
+		margin-left: 14px
+	
+	&_icon
+		font-size: 0
+
+	&_stroke
+		background: transparent 
+		border-color: $gray
+		color: $cl
+	&_stroke#{&}_white
+		background: transparent
+		color: white
+		&:hover
+			background: $gray
+			color: $cl  
+	
+	&_white
+		background: white
+		border-color: white
+		color: $cl
+		.icon
+			fill: $cl
+	
+	&_transparent
+		background: transparent
+		border-color: transparent
+		color: $cl
+		&:hover
+			border-color: transparent 
+		.icon
+			fill: $cl

@@ -1,0 +1,41 @@
+.reviews
+	&-title
+		margin-bottom: 40px
+	&-item
+		display: flex
+		align-items: stretch
+		&:not(:last-child)
+			margin-bottom: 60px
+			+m
+				margin-bottom: 40px
+	&-preview
+		margin-right: 15px
+		flex: 0 0 40px
+	&-pic
+		border-radius: 50%
+	&-inner
+		margin-top: 11px
+	&-head
+		margin-bottom: 10px
+		font-size: 14px
+		color: $gray
+		+m
+			+roboto
+	&-user
+		color: $cl
+	&-foot
+		display: flex
+		margin-top: 60px
+		justify-content: space-between
+		align-items: center
+		+m
+			margin-top: 40px
+	&-pager
+		font-size: 12px
+	
+	&_previews &-head
+		+m
+			margin-bottom: 24px
+	&_previews &-content
+		+m
+			margin-left: -55px

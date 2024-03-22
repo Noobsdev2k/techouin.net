@@ -1,0 +1,45 @@
+.filters
+	&-section
+		&:not(:last-child)
+			margin-bottom: 60px
+	&-title
+		margin-bottom: 20px
+		font-size: 12px
+		font-weight: 600
+		text-transform: uppercase
+	&-inner
+		display: flex
+		flex-direction: column
+		align-items: flex-start
+	&-inner_cols
+		margin-bottom: -20px
+		flex-direction: row
+	&-inner_cols &-link
+		&:not(:last-child)
+			margin: 0 30px 20px 0
+	&-link
+		padding-left: 10px
+		+roboto
+		color: $gray
+		transform: translateX(-10px) 
+		transition: all .2s 
+		&:before
+			content: ''
+			position: absolute
+			top: calc(50% - 3px)
+			left: 0
+			width: 5px
+			height: 5px
+			background: $cl
+			border-radius: 50%  
+			opacity: 0 
+			transition: opacity .2s
+		&:not(:last-child)
+			margin-bottom: 20px
+		&:hover,
+		&.active
+			color: $cl
+		&.active
+			transform: translateX(0)
+			&:before
+				opacity: 1 

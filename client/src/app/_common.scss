@@ -1,0 +1,45 @@
+body {
+  @include work;
+  font-size: 16px;
+  font-weight: 500;
+  color: $cl;
+  line-height: 1.3;
+}
+
+button {
+  background: transparent;
+}
+
+input,
+textarea {
+  @include roboto;
+  font-size: 18px;
+}
+
+textarea {
+  display: block;
+}
+
+a {
+  color: $cl;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+.hide-mobile {
+  @include m;
+  display: none !important;
+}

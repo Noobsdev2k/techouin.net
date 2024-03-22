@@ -1,0 +1,32 @@
+.sizes
+	display: flex
+	margin: 0 -10px -10px 0
+	flex-wrap: wrap
+	&-item
+		position: relative
+		margin: 0 10px 10px 0
+	&-input
+		position: absolute
+		top: 0
+		left: 0
+		opacity: 0
+	&-input:checked + &-title
+		background: $cl
+		color: white
+	&-input[disabled] + &-title
+		border-color: $gray
+		color: $gray
+		cursor: not-allowed
+	&-title
+		display: flex
+		position: relative
+		width: 40px
+		height: 40px
+		border-radius: 50%
+		border: 1px solid $cl
+		font-size: 12px
+		transition: background .2s, color .2s
+		align-items: center
+		justify-content: center
+		cursor: pointer 
+		z-index: 2 

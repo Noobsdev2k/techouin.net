@@ -1,0 +1,47 @@
+$d: 1240px;
+$t: 1023px;
+$m: 767px;
+$s: 474px;
+
+$work-font: 'Work Sans', sans-serif;
+$roboto-font: 'Roboto', sans-serif;
+$cl: #222;
+$cl20: #D3D3D3;
+$cl40: #A7A7A7;
+$cl60: #7A7A7A;
+$cl80: #4E4E4E;
+$bg: #F2F2F2;
+$gray: #AAA;
+
+@mixin d {
+  @media only screen and (max-width: #{$d}) {
+    @content;
+  }
+}
+
+@mixin t {
+  @media only screen and (max-width: #{$t}) {
+    @content;
+  }
+}
+
+@mixin m {
+  @media only screen and (max-width: #{$m}) {
+    @content;
+  }
+}
+
+@mixin s {
+  @media only screen and (max-width: #{$s}) {
+    @content;
+  }
+}
+
+@mixin work {
+  font-family: $work-font;
+}
+
+@mixin roboto {
+  font-family: $roboto-font;
+  font-weight: 400;
+}

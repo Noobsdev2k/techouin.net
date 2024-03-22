@@ -1,0 +1,46 @@
+.pager
+	display: flex
+	width: 160px
+	height: 20px
+	font-size: 12px
+	align-items: center
+	+m
+		width: 112px
+	&-dots
+		margin: 0 5px
+		flex: 1 1 auto
+		+m
+			margin: 0 2px
+		.slick-dots
+			display: flex
+		li
+			flex: 1
+			&.slick-active
+				button
+					opacity: 1 
+		button
+			display: block
+			width: 100%
+			height: 15px
+			padding: 5px
+			font-size: 0
+			opacity: .2
+			transition: opacity .2s
+			+m
+				padding: 5px 2px
+			&:hover
+				opacity: .6 
+			&:before
+				content: ''
+				display: inline-block
+				width: 100%
+				height: 2px
+				background: $cl
+				border-radius: 2px
+	
+	&_white
+		color: white
+	&_white &-dots
+		button
+			&:before
+				background: white 

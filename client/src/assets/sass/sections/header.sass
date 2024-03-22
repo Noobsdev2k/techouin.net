@@ -1,0 +1,161 @@
+.header
+	position: relative
+	z-index: 50 
+	&-container
+		display: flex
+		height: 150px
+		padding-top: 24px
+		padding-bottom: 10px
+		align-items: center
+		+m
+			height: 100px
+			padding-top: 20px
+	&-left,
+	&-right
+		display: flex
+		align-items: center
+		flex: 1
+	&-center
+		display: flex
+		align-items: center
+		justify-content: center
+		flex: 1 1 auto
+	&-left &-action
+		margin-right: 30px
+	&-right
+		justify-content: flex-end
+	&-right &-action
+		margin-left: 30px
+	&-logo
+		transition: opacity .2s
+		&:hover
+			opacity: .6
+	&-pic
+		display: block
+	&-nav
+		+t
+			display: none
+	&-link
+		position: relative
+		margin: 0 14px
+		transition: opacity .2s
+		&:hover
+			opacity: .6
+		&.active
+			&:after
+				content: ''
+				position: absolute
+				top: calc(100% + 4px)
+				left: calc(50% - 2px)
+				width: 5px
+				height: 5px
+				background: $cl
+				border-radius: 50%
+	&-action
+		min-width: 20px 
+		min-height: 20px 
+		font-size: 0
+		transition: opacity .2s
+		&:hover
+			opacity: .6
+		.icon
+			font-size: 20px
+			fill: $cl
+			&-close
+				font-size: 16px
+	&-user
+		margin-left: 30px
+		flex: 0 0 30px
+		transition: opacity .2s
+		&:hover
+			opacity: .6
+	&-user &-pic
+		display: block
+		width: 100%
+		border-radius: 50%
+	&-sidebar
+		display: flex
+		width: 100%
+		max-width: 255px 
+		margin-left: auto
+		align-items: center
+		+d
+			width: auto
+			max-width: initial
+	&-sidebar &-nav
+		margin: 0 auto 0 0
+		+d
+			margin-right: 30px
+		+t
+			display: block
+	&-sidebar &-link
+		margin: 0
+	&-sidebar &-btn
+		margin: 0 auto 0 0
+	&-sidebar &-action
+		.icon
+			fill: $cl
+	&-socials
+		margin: auto
+		color: white
+		+m
+			margin: 0 0 0 auto
+		a
+			color: white
+			transition: opacity .2s
+			&:hover
+				opacity: .6
+	&-btn
+		margin-left: 30px
+		flex-shrink: 0
+	
+	&_white &-link
+		color: white
+		&.active
+			&:after
+				background: white
+	&_white &-action
+		.icon
+			fill: white
+	
+	&_absolute
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+	
+	&_5 &-sidebar
+		max-width: 290px
+		+d
+			max-width: 280px
+		+t
+			justify-content: flex-end
+		+m
+			width: auto
+			max-width: initial 
+	&_5 &-action
+		+t
+			.icon
+				fill: white
+	&_5 &-btn
+		+t
+			margin-right: 30px
+			&:hover
+				color: $cl
+				.icon
+					fill: $cl
+			color: white
+			.icon
+				fill: white
+		+m
+			display: none
+	
+	&_7 &-link
+		+d
+			color: white
+	&_7 &-action
+		.icon
+			+d
+				fill: white
+	
+

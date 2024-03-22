@@ -1,0 +1,47 @@
+.socials
+	display: flex
+	&-item
+		display: flex
+		width: 40px
+		height: 40px
+		background: white
+		align-items: center
+		justify-content: center
+		transition: background .2s
+		&:hover
+			background: $gray
+			.icon
+				fill: $cl
+		.icon
+			font-size: 16px 
+			fill: $cl
+			transition: fill .2s 
+			&-twitter
+				font-size: 14px
+	
+	&_black &-item
+		background: $cl
+		&:hover
+			background: $gray 
+		.icon
+			fill: white
+	
+	&_transparent &-item
+		background: tranpsrent
+		&:hover
+			background: $gray
+		.icon
+			fill: $cl
+	
+	&_share &-item
+		margin-right: -1px
+		background: transparent
+		border: 1px solid $bg
+		&:hover
+			background: $bg 
+		.icon
+			fill: $cl
+	
+	&_rounded &-item
+		margin-right: 10px
+		border-radius: 50% 

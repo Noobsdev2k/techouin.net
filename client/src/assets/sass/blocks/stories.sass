@@ -1,0 +1,22 @@
+.stories
+	&-title
+		margin-bottom: 40px
+	&-item
+		display: flex
+		flex-direction: column
+		align-items: flex-start
+		&:not(:last-child)
+			margin-bottom: 40px
+	&-label
+		margin-bottom: 4px
+		opacity: 1
+		transition: opacity .2s 
+		&:hover
+			opacity: .6 
+	&-name
+		+roboto
+		line-height: (28/16)
+		opacity: .6 
+		transition: opacity .2s
+		&:hover
+			opacity: 1 
