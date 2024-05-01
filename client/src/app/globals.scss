@@ -9,5 +9,16 @@
 @import 'variables';
 @import 'common';
 @import '../assets/sass/blocks/container';
-@import '../assets/sass/sections/header';
+@import '../assets/sass/blocks/title';
+@import '../assets/sass/blocks/label';
+@import '../assets/sass/blocks/arrows';
+@import '../assets/sass/blocks/btn';
+@import '../assets/sass/blocks/section';
+@import '../assets/sass/blocks/carousel';
 
+//section
+@import '../assets/sass/sections/header';
+@import '../assets/sass/sections/hero-7';
+@import '../assets/sass/sections/cards-10';
+@import '../assets/sass/sections/extheader-4';
+@import '../assets/sass/sections/text-9';

@@ -1,0 +1,107 @@
+.hero-7
+	position: relative
+	&-container
+		display: flex
+		align-items: center
+	&-slide
+		position: relative
+		box-sizing: border-box
+	&-slide &-container
+		height: 720px
+		+m
+			height: 812px
+			padding: 140px 40px
+			align-items: flex-end
+	&-group
+		position: relative
+		max-width: 220px
+		z-index: 2
+	&-group &-label
+		margin-bottom: 40px
+		opacity: 1 
+	&-title
+		margin-bottom: 30px
+		+m
+			margin: 20px 0 34px
+			font-size: 36px
+			line-height: (46/36) 
+	&-more
+		border-bottom: 2px solid
+		padding-bottom: 2px 
+		transition: opacity .2s
+		&:hover
+			opacity: .6 
+	&-bg
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0 
+		+cover
+	&-foot
+		position: absolute
+		left: 0
+		width: 100%
+		bottom: 0
+		+m
+			position: static
+	&-foot &-container
+		height: 120px 
+		align-items: center
+		+m
+			height: 0
+	&-arrows
+		margin-right: 30px
+		+m
+			position: absolute
+			top: 145px
+			right: 40px
+			margin: 0
+	&-pager
+		font-size: 12px
+		+t
+			display: none
+	&-box
+		display: flex
+		height: 100%
+		margin: 0 -85px 0 auto
+		align-items: flex-end
+		flex: 0 0 530px
+		+d
+			margin-right: -60px
+		+t
+			margin-right: -40px
+		+m
+			display: none
+	&-next
+		display: flex
+		width: 100%
+		background: white 
+		align-items: center
+	&-inner
+		display: flex
+		padding: 40px
+		align-items: center
+	&-preview
+		margin-right: 25px 
+		flex: 0 0 125px
+	&-label
+		margin-bottom: 10px
+	&-subtitle
+		transition: opacity .2s
+		&:hover
+			opacity: .6 
+	&-buy
+		display: flex
+		background: $cl 
+		align-items: center
+		justify-content: center
+		align-self: stretch
+		transition: background .2s 
+		flex: 0 0 138px
+		&:hover
+			background: $gray 
+		.icon
+			font-size: 20px
+			fill: white
+

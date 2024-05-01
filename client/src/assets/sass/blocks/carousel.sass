@@ -10,21 +10,13 @@
 	&-pic
 		width: 100%
 
-	.slick-dots
+	.dots-bullets
 		display: flex
 		position: absolute
 		left: 22px
 		bottom: 34px
 		li
 			margin-right: 7px
-			&.slick-active
-				button
-					background: $cl 
-		button
-			display: block
-			width: 7px
-			height: 7px
-			border-radius: 50% 
-			background: $gray
-			transition: background .2s 
-			font-size: 0
+			&.swiper-pagination-active
+				background: $cl
+				opacity: 1

@@ -1,0 +1,47 @@
+.cards-10
+	display: flex
+	margin: 0 -15px
+	+t
+		display: block
+	&-col
+		padding: 0 15px
+		&:first-child
+			flex: 1 1 auto
+		&:last-child
+			max-width: 570px 
+			flex: 0 0 570px
+			+t
+				max-width: 100% 
+	&-big
+		display: flex
+		height: 500px
+		padding: 60px 45px 40px
+		+cover
+		color: white 
+		align-items: flex-start
+		flex-direction: column
+		+t
+			margin-bottom: 30px
+		+m
+			margin-bottom: 20px
+	&-title
+		margin-bottom: 10px
+	&-price
+		+roboto
+		font-size: 12px
+	&-btn
+		margin-top: auto
+	&-grid
+		display: flex
+		margin: 0 -15px -30px
+		flex-wrap: wrap
+		+m
+			display: block
+			margin: 0 0 -20px
+	&-cell
+		max-width: calc(50% - 30px)
+		margin: 0 15px 30px
+		flex: 0 0 calc(50% - 30px)
+		+m
+			max-width: 100%
+			margin: 0 0 20px 
