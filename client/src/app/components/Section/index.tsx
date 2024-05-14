@@ -1,4 +1,4 @@
-import { StoreSlider } from '../Slider'
+import { ProductCard } from '../Slider'
 
 export default function Section_store() {
   return (
@@ -7,7 +7,7 @@ export default function Section_store() {
         {/* cards 10*/}
         <div className='cards-10'>
           <div className='cards-10-col'>
-            <div className='cards-10-big' style={{ backgroundImage: 'url(img/image-40.jpg)' }}>
+            <div className='cards-10-big' style={{ backgroundImage: 'url(/img/image-40.jpg)' }}>
               <div className='cards-10-title title title_sm'>Instastore</div>
               <div className='cards-10-price'>$120</div>
               <a className='cards-10-btn btn btn_icon btn_white' href='#'>
@@ -21,16 +21,16 @@ export default function Section_store() {
           <div className='cards-10-col'>
             <div className='cards-10-grid'>
               <div className='cards-10-cell'>
-                <StoreSlider />
+                <ProductCard />
               </div>
               <div className='cards-10-cell'>
-                <StoreSlider />
+                <ProductCard />
               </div>
               <div className='cards-10-cell'>
-                <StoreSlider />
+                <ProductCard />
               </div>
               <div className='cards-10-cell'>
-                <StoreSlider />
+                <ProductCard />
               </div>
             </div>
           </div>

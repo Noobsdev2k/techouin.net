@@ -1,0 +1,126 @@
+.extheader-5
+	background: #F6F6F6
+	&-container
+		position: relative 
+		min-height: 695px
+		padding-top: 210px
+		+t
+			padding-top: 100px
+	&-row
+		display: flex
+		position: relative
+		margin-bottom: 80px
+		justify-content: space-between
+		z-index: 2 
+		+d
+			display: block
+			max-width: 255px
+		+t
+			display: flex
+			max-width: 100%
+		+m
+			display: block
+			position: static
+			margin-bottom: 40px
+	&-col
+		flex: 0 0 255px
+		+d
+			flex: 0 0 calc(50% - 40px)
+		&:first-child
+			+d
+				margin-bottom: 60px
+			+t
+				margin-bottom: 0
+	&-slider
+		position: absolute !important
+		top: calc(50% - 280px)
+		left: calc(50% - 280px)
+		width: 560px	
+		+d
+			left: auto
+			right: 60px
+		+t 
+			position: static !important
+			margin: 0 auto
+		+m
+			width: 100%
+			margin: 0 0 80px
+	&-caption
+		margin-bottom: 10px
+		font-size: 12px
+		text-transform: uppercase
+	&-title
+		margin-bottom: 30px
+	&-content
+		margin-bottom: 60px
+		+m
+			margin-bottom: 40px
+	&-previews
+		display: flex
+		align-items: flex-end
+		+m
+			position: absolute
+			top: calc(90vw + 40px)
+			left: 40px
+			margin: 0
+	&-thumbs
+		max-width: 210px 
+		margin: 0 10px 0 -10px
+	&-thumb
+		border: 1px solid transparent
+		transition: border-color .2s
+		cursor: pointer 
+		&.swiper-slide-thumb-active
+			border-color: $cl 
+	&-plus
+		display: flex
+		width: 40px
+		height: 40px
+		background: $cl
+		font-size: 12px
+		color: white
+		align-items: center
+		justify-content: center
+	&-option
+		display: flex
+		margin-bottom: 40px
+		align-items: center
+		justify-content: space-between
+	&-option_rows
+		display: block
+	&-option_rows &-label
+		margin-bottom: 20px 
+		color: $cl 
+	&-label
+		font-size: 12px
+		color: $gray 
+		text-transform: uppercase
+	&-foot
+		display: flex
+		position: relative
+		min-height: 100px 
+		margin: 0 -15px
+		padding: 0 80px
+		background: white 
+		align-items: center
+		justify-content: space-between
+		z-index: 2
+		+d
+			margin: 0 -20px
+			padding: 0 60px
+		+t
+			padding: 0 40px
+		+m
+			min-height: 86px 
+			padding: 0 20px
+	&-actions
+		display: flex
+	&-arrows
+		+t
+			display: none
+	&-pager
+		+m
+			display: none
+	&-play
+		+m
+			font-size: 0

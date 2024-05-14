@@ -8,7 +8,8 @@ import { Pagination } from 'swiper/modules'
 import Link from 'next/link'
 
 
-export function StoreSlider({srcImg , alt, price} : any) {
+
+export function ProductCard({ srcImg, alt, price }: any) {
   return (
     <Swiper
       className='carousel'
@@ -24,17 +25,17 @@ export function StoreSlider({srcImg , alt, price} : any) {
       <div className='carousel-list js-carousel'>
         <SwiperSlide>
           <Link className='carousel-slide' href='#'>
-            <img className='carousel-pic' src='img/image-41.jpg' alt='Image' />
+            <img className='carousel-pic' src='/img/image-41.jpg' alt='Image' />
           </Link>
         </SwiperSlide>
         <SwiperSlide>
           <Link className='carousel-slide' href='#'>
-            <img className='carousel-pic' src='img/image-41.jpg' alt='Image' />
+            <img className='carousel-pic' src='/img/image-41.jpg' alt='Image' />
           </Link>
         </SwiperSlide>{' '}
         <SwiperSlide>
           <Link className='carousel-slide' href='#'>
-            <img className='carousel-pic' src='img/image-41.jpg' alt='Image' />
+            <img className='carousel-pic' src='/img/image-41.jpg' alt='Image' />
           </Link>
         </SwiperSlide>
       </div>

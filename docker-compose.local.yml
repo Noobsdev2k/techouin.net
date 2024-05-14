@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  # nginx:
+  #   depends_on:
+  #     - admin
+  #     - client
+  #   build:
+  #     dockerfile: Dockerfile.prod
+  #     context: ./nginx
+  #   restart: always
+  #   ports:
+  #     - '80:80'
+  #   volumes:
+  #     - ./nginx:/app/nginx
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    ports:
+      - '80:80'
+  # admin:
+  #   build:
+  #     context: ./admin
+  #     dockerfile: Dockerfile.prod

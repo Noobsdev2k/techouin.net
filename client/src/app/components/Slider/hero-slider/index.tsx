@@ -6,7 +6,8 @@ import 'swiper/css/effect-fade'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 // import required modules
-import { Navigation, EffectFade  } from 'swiper/modules'
+import { Navigation, EffectFade } from 'swiper/modules'
+import Image from 'next/image'
 
 
 export function HeroSlider() {
@@ -29,7 +30,7 @@ export function HeroSlider() {
                 Buy Now
               </a>
             </div>
-            <div className='hero-7-bg' style={{ backgroundImage: 'url(img/bg-image-10.jpg)' }} />
+            <div className='hero-7-bg' style={{ backgroundImage: 'url(/img/bg-image-10.jpg)' }} />
           </div>
         </SwiperSlide>
         <SwiperSlide className=' hero-7-slide'>
@@ -41,7 +42,7 @@ export function HeroSlider() {
                 Buy Now
               </a>
             </div>
-            <div className='hero-7-bg' style={{ backgroundImage: 'url(img/bg-image-10.jpg)' }} />
+            <div className='hero-7-bg' style={{ backgroundImage: 'url(/img/bg-image-10.jpg)' }} />
           </div>
         </SwiperSlide>
         <SwiperSlide className='hero-7-slide'>
@@ -53,7 +54,7 @@ export function HeroSlider() {
                 Buy Now
               </a>
             </div>
-            <div className='hero-7-bg' style={{ backgroundImage: 'url(img/bg-image-10.jpg)' }} />
+            <div className='hero-7-bg' style={{ backgroundImage: 'url(/img/bg-image-10.jpg)' }} />
           </div>
         </SwiperSlide>
       </Swiper>
@@ -72,7 +73,7 @@ export function HeroSlider() {
             </button>
           </div>
           <div className='hero-7-pager'>
-            <span className='hero-7-current js-hero-7-current'>01</span> —{' '}
+            <span className='hero-7-current js-hero-7-current'>01</span> —
             <span className='hero-7-total js-hero-7-total' />
           </div>
           <div className='hero-7-box'>
@@ -82,9 +83,9 @@ export function HeroSlider() {
                   <img className='hero-7-pic' src='img/image-39.jpg' alt='Image' />
                 </a>
                 <div className='hero-7-details'>
-                  <div className='hero-7-label label'>Editor's pick</div>
+                  <div className='hero-7-label label'>Editor&apos;s pick</div>
                   <a className='hero-7-subtitle' href='#'>
-                    Nike Air Force 1 '07 All Black
+                    Nike Air Force 1 &apos;07 All Black
                   </a>
                 </div>
               </div>

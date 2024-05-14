@@ -1,0 +1,30 @@
+.text-18
+	display: flex
+	+m
+		display: block
+	&-col
+		&:first-child
+			margin-right: 75px
+			flex: 0 0 210px
+			+m
+				margin: 0 0 40px
+		&:last-child
+			max-width: 730px 
+			flex: 0 0 calc(100% - 285px)
+			+m
+				max-width: 100% 
+	&-subtitle
+		margin-bottom: 20px
+	&-content,
+	&-quote
+		margin-bottom: 60px
+		+m
+			margin-bottom: 40px
+	&-quote &-title
+		+m
+			font-size: 24px
+			line-height: (36/24) 
+	&-author
+		margin-top: 20px
+	&-tags
+		margin-top: 80px 

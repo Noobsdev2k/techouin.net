@@ -1,4 +1,3 @@
-
-
 export { HeroSlider } from './hero-slider'
-export {StoreSlider} from './store-slider'
+export { ProductCard } from './product_card'
+export { ThumbSlider } from './thumbs-slider'

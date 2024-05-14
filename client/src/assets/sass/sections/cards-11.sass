@@ -1,0 +1,71 @@
+.cards-11
+	&-head
+		display: flex
+		margin-bottom: 80px
+		align-items: center
+		justify-content: space-between
+	&-title
+		+m
+			font-size: 24px
+			line-height: (36/24) 
+	&-sort
+		display: inline-block
+		position: relative
+		margin-left: 30px
+		color: $gray
+		transition: color .2s
+		&:hover,
+		&.active
+			color: $cl 
+		&.active
+			&:after
+				content: ''
+				position: absolute
+				bottom: -9px
+				left: calc(50% - 2px)
+				width: 5px
+				height: 5px
+				background: $cl
+				border-radius: 50%
+	&-layout
+		display: flex
+		+m
+			display: block
+	&-sidebar
+		margin-right: 75px
+		flex: 0 0 210px
+		+d
+			margin-right: 40px
+			flex: 0 0 140px
+		+m
+			display: none
+	&-container
+		max-width: calc(100% - 285px) 
+		flex: 0 0 calc(100% - 285px)
+		+d
+			max-width: calc(100% - 180px) 
+			flex: 0 0 calc(100% - 180px)
+		+m
+			max-width: 100% 
+	&-grid
+		display: flex
+		margin: 0 -15px -30px
+		flex-wrap: wrap
+		+m
+			display: block
+			margin-bottom: -20px
+	&-cell
+		max-width: calc(33.33% - 30px)
+		margin: 0 15px 30px
+		flex: 0 0 calc(33.33% - 30px)
+		+t
+			max-width: calc(50% - 30px)
+			flex: 0 0 calc(50% - 30px)
+		+m
+			max-width: 100%
+			margin-bottom: 20px
+		&_lg
+			max-width: calc(50% - 30px)
+			flex: 0 0 calc(50% - 30px)
+			+m
+				max-width: 100% 

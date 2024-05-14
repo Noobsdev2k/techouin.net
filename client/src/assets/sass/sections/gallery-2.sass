@@ -1,0 +1,42 @@
+.gallery-2
+	&-slide
+		position: relative
+		margin-right: 30px
+		width: fit-content !important
+		+m
+			margin-right: 10px
+	&-btn
+		position: absolute
+		right: 40px
+		bottom: 40px
+		+m
+			display: none
+	&-link
+		display: block
+	&-pic
+		display: block
+		width: auto
+		height: 560px
+		+d
+			height: 520px
+		+t
+			height: 400px
+		+m
+			height: 180px
+	&-progress
+		margin-top: 40px
+		background: rgba($cl,.2) 
+		border-radius: 2px
+		+m
+			margin-top: 20px
+	&-position
+		height: 2px
+		background: $cl
+		border-radius: 2px
+		transition: width .4s 
+	&-pager
+		margin-top: 16px
+		font-size: 12px
+	
+	.gallery-2-slider
+		overflow: visible

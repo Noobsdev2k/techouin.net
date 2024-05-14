@@ -1,0 +1,23 @@
+.cards-15
+	&-head
+		display: flex
+		margin-bottom: 40px 
+		align-items: center
+		justify-content: space-between
+	&-slider
+		margin: 0 -10px
+		@media(max-width:768)
+			width: fit-content
+			margin: 0
+		+m
+			margin: 0
+		& > .slick-list
+			+m
+				overflow: visible
+	&-slide
+		margin: 0 10px
+		+m
+			width: 260px
+			margin-right: 10px
+	
+	

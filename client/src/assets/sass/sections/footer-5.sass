@@ -1,0 +1,71 @@
+.footer-5
+	background: $cl
+	color: white  
+	&-section
+		padding: 80px 0
+		&:not(:last-child)
+			border-bottom: 1px solid rgba($gray,.4)
+	&-row
+		display: flex
+		margin: 0 -15px
+		+m
+			margin-bottom: -80px
+			flex-wrap: wrap
+	&-row_last
+		+m
+			margin-bottom: -40px
+			flex-direction: column
+	&-row_last &-col
+		+m
+			margin-bottom: 40px
+		&:nth-child(1)
+			+m
+				order: 2
+		&:nth-child(2)
+			text-align: center
+			+m
+				text-align: left
+				order: 1
+		&:nth-child(3)
+			text-align: right
+			+m
+				text-align: left
+				order: 3
+	&-col
+		padding: 0 15px
+		flex: 1
+		+m
+			margin-bottom: 80px
+			flex: 0 0 50%
+	&-title
+		display: inline-block
+		margin-bottom: 50px
+		vertical-align: top
+		+t
+			margin-bottom: 40px
+	&-nav
+		display: flex
+		align-items: flex-start
+		flex-direction: column
+	&-link
+		color: white 
+		transition: opacity .2s
+		&:not(:last-child)
+			margin-bottom: 12px
+		&:hover
+			opacity: .6
+	&-logo
+		display: inline-block
+		transition: opacity .2s
+		&:hover
+			opacity: .6
+	a:not(.btn)
+		color: white
+	
+	&_light
+		background: $bg
+		color: $cl
+		a:not(.btn)
+			color: $cl 
+		
+		
