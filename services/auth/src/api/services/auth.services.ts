@@ -1,6 +1,6 @@
 import userModel from '@/databases/models/user.model'
 import { Api401Error } from '../middlewares'
-import { comparePassword, generateOTP, hashPassword,  } from '@/utils'
+import { comparePassword, generateOTP, hashPassword } from '@/utils'
 
 import { OtpService } from '.'
 import otpModel from '@/databases/models/otp.model'
@@ -31,10 +31,8 @@ class AuthService {
     //create new user
     const newUser = await userModel.create({ name, email, password: hashPass, phone })
 
-
     //create otp
     if (newUser) {
-      const phone = '0123456789'
       const otp = generateOTP(phone)
       const Otp = await OtpService.createOtp(otp, email)
       return {
@@ -46,13 +44,12 @@ class AuthService {
   }
 
   async resendOtp(payload: any) {
-    const { email } = payload
+    const { email, phone } = payload
     const isVerifyEmail = await userModel.findOne({ email, verify: true })
     if (isVerifyEmail) {
       throw new Api401Error('Email is verified ')
     }
 
-    const phone = '0123456789'
     const otp = generateOTP(phone)
     const Otp = await OtpService.createOtp(otp, email)
 

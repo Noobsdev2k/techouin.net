@@ -80,7 +80,7 @@ export function HeroSlider() {
             <div className='hero-7-next'>
               <div className='hero-7-inner'>
                 <a className='hero-7-preview' href='#'>
-                  <img className='hero-7-pic' src='img/image-39.jpg' alt='Image' />
+                  <img className='hero-7-pic' src='/img/image-39.jpg' alt='Image' />
                 </a>
                 <div className='hero-7-details'>
                   <div className='hero-7-label label'>Editor&apos;s pick</div>

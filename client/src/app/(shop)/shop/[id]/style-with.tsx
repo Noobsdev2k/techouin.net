@@ -1,5 +1,5 @@
 'use client'
-import { StoreSlider } from '@/app/components/Slider'
+import { ProductCard } from '@/app/components/Slider'
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -20,22 +20,22 @@ export default function StyleWith() {
                         1024: { slidesPerView: 4 },
                     }}>
                         <SwiperSlide className="cards-15-slide">
-                            <StoreSlider />
+                            <ProductCard />
                         </SwiperSlide>
                         <SwiperSlide className="cards-15-slide">
-                            <StoreSlider />
+                            <ProductCard />
                         </SwiperSlide>
                         <SwiperSlide className="cards-15-slide">
-                            <StoreSlider />
+                            <ProductCard />
                         </SwiperSlide>
                         <SwiperSlide className="cards-15-slide">
-                            <StoreSlider />
+                            <ProductCard />
                         </SwiperSlide>
                         <SwiperSlide className="cards-15-slide">
-                            <StoreSlider />
+                            <ProductCard />
                         </SwiperSlide>
                         <SwiperSlide className="cards-15-slide">
-                            <StoreSlider />
+                            <ProductCard />
                         </SwiperSlide>
                     </Swiper>
                 </div>

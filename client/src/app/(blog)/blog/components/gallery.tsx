@@ -6,7 +6,7 @@ import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Scrollbar } from 'swiper/modules'
 
-export default function Gallery() {
+export default function Gallery(): React.JSX.Element {
     return (
         <Swiper className="gallery-2-slider js-gallery-2-slider"
             slidesPerView={'auto'}

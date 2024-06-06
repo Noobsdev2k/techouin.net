@@ -56,32 +56,32 @@ services:
   #   volumes:
   #     - ./nginx:/app/nginx
 
-  proxy:
-    depends_on:
-      - auth
-    build:
-      dockerfile: Dockerfile
-      context: ./services/proxy
-    restart: always
-    ports:
-      - ${PROXY_PORT}:${PROXY_PORT}
-    volumes:
-      - ./nginx:/app/nginx
-  auth:
-    build:
-      context: ./services/auth
-      dockerfile: Dockerfile
-    volumes:
-      - ./services/auth:/app/services/auth
-      - /app/services/auth/node_modules
-    depends_on:
-      - postgresql
-      - mongo
-      - kafka
-    ports:
-      - '8080:8080'
-    env_file:
-      - ./services/auth/.env
+  # proxy:
+  #   depends_on:
+  #     - auth
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: ./services/proxy
+  #   restart: always
+  #   ports:
+  #     - ${PROXY_PORT}:${PROXY_PORT}
+  #   volumes:
+  #     - ./nginx:/app/nginx
+  # auth:
+  #   build:
+  #     context: ./services/auth
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./services/auth:/app/services/auth
+  #     - /app/services/auth/node_modules
+  #   depends_on:
+  #     - postgresql
+  #     - mongo
+  #     - kafka
+  #   ports:
+  #     - '8080:8080'
+  #   env_file:
+  #     - ./services/auth/.env
 
   # client:
   #   build:

@@ -1,1 +1,1 @@
-
+var process: NodeJS.Process
