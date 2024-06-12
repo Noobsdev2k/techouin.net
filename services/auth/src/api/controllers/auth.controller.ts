@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { CREATED, OK } from '../middlewares'
 import { AuthService } from '../services'
+import { IRequest } from '@/configs/interfaces'
 
 class AuthController {
   login = async (req: Request, res: Response, next: NextFunction) => {
@@ -13,7 +14,6 @@ class AuthController {
    * @returns {any}
    */
   signup = async (req: Request, res: Response, next: NextFunction) => {
-    console.log('signup')
     CREATED({
       res,
       message: 'Register is Successful. Please confirm your email!!!',
@@ -21,7 +21,6 @@ class AuthController {
     })
   }
   verifyEmail = async (req: Request, res: Response, next: NextFunction) => {
-    console.log('verifyEmail')
     CREATED({
       res,
       message: 'Verify email is Successful!!!',
@@ -30,6 +29,12 @@ class AuthController {
   }
   resendOtp = async (req: Request, res: Response, next: NextFunction) => {
     CREATED({ res, message: 'Send otp is Successful!!!', metadata: await AuthService.resendOtp(req.body) })
+  }
+
+  logout = async (req: IRequest, res: Response, next: NextFunction) => {
+    console.log(req)
+
+    OK({ res, message: 'Logout success', metadata: (await AuthService.logout(req.keyStore)) as any })
   }
 }
 export default new AuthController()

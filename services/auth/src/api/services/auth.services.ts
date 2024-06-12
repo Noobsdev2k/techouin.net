@@ -1,5 +1,5 @@
 import userModel from '@/databases/models/user.model'
-import { Api401Error } from '../middlewares'
+import { Api400Error, Api401Error } from '../middlewares'
 import { comparePassword, generateOTP, hashPassword } from '@/utils'
 
 import { OtpService } from '.'
@@ -54,7 +54,7 @@ class AuthService {
     const Otp = await OtpService.createOtp(otp, email)
 
     return {
-      otp: Otp
+      otp: otp
     }
   }
 
@@ -133,6 +133,12 @@ class AuthService {
       isUser,
       tokens
     }
+  }
+  //logout service
+  logout = async (keyStore: any) => {
+    const delKey = await keyTokenServices.removeKeyById(keyStore._id)
+    if (!delKey) throw new Api400Error(`Invalid request`)
+    return delKey
   }
 }
 export default new AuthService()

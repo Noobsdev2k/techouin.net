@@ -49,7 +49,7 @@ const productSchema = new Schema(
       min: [1, 'Rating must be at least 1'],
       max: [5, 'Rating must be at most 5'],
       // 4.34565656 => 4.3
-      set: (val) => Math.round(val * 10) / 10
+      set: (val: any) => Math.round(val * 10) / 10
     },
     productVariations: {
       type: Array,

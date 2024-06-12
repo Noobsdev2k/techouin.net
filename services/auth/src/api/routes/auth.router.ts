@@ -13,7 +13,11 @@ router.post('/signup', asyncHandler(AuthController.signup))
 router.post('/resend_otp', asyncHandler(AuthController.resendOtp))
 router.post('/verify_email', asyncHandler(AuthController.verifyEmail))
 router.post('/login', asyncHandler(AuthController.login))
-router.get('/getProfile')
+
 router.use(asyncHandler(Authentication))
+router.post('/logout', asyncHandler(AuthController.logout))
+router.get('/getProfile', (req: Request, res: Response) => {
+  return res.status(200).json({ status: 'Welcome to profile' })
+})
 // router.post('/verifyEmail', asyncHandler())
 export default router

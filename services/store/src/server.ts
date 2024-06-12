@@ -1,5 +1,7 @@
 require('dotenv').config()
+import { exit } from 'process'
 import app from './api/app'
+import { isOperationalError } from './api/middlewares'
 const nodeEnv = process.env.NODE_ENV
 console.log(nodeEnv)
 
@@ -20,4 +22,20 @@ const server = app.listen(PORT, () => {
 process.on('SIGINT', () => {
   server.close((err) => console.log('SIG', err))
   // notify send (ping....)
+})
+// Keyboard quit
+process.on('SIGTERM', () => {
+  console.log('Kill command:: Service stop!!!')
+  exit()
+})
+// `kill` command
+// catch all uncaught exceptions
+process.on('unhandledRejection', (error) => {
+  throw error
+})
+process.on('uncaughtException', (error: any) => {
+  // if isOperational is false -> exit service
+  if (!isOperationalError(error)) {
+    exit()
+  }
 })
