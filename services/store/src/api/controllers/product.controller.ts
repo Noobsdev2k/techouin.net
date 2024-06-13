@@ -14,6 +14,47 @@ class ProductController {
       })
     })
   }
+  publishProductByShop = async (req: IRequest, res: Response, next: NextFunction) => {
+    OK({
+      res,
+      message: 'Update publish product successfully',
+      metadata: await ProductService.publishProductByShop({
+        productShop: req.user.userId,
+        productId: req.params.id
+      })
+    })
+  }
+
+  updateProduct = async (req: IRequest, res: Response, next: NextFunction) => {
+    OK({
+      res,
+      message: 'Update product successfully',
+      metadata: await ProductService.updateProduct(req.body.productType, req.params.productId, {
+        ...req.body,
+        productShop: req.user.userId
+      })
+    })
+  }
+
+  getAllDraftsForShop = async (req: IRequest, res: Response, next: NextFunction) => {
+    OK({
+      res,
+      message: 'Get list draft product successfully',
+      metadata: await ProductService.findAllDraftsForShop({
+        productShop: req.user.userId
+      })
+    })
+  }
+
+  getAllPublishedForShop = async (req: IRequest, res: Response, next: NextFunction) => {
+    OK({
+      res,
+      message: 'Get list published product successfully',
+      metadata: await ProductService.findAllPublishForShop({
+        productShop: req.user.userId
+      })
+    })
+  }
 }
 
 export default new ProductController()

@@ -3,6 +3,8 @@
 import { FurnitureModel } from '@/databases/models/product.model'
 import { Product } from './product.factory'
 import { Api400Error } from '@/api/middlewares'
+import { removeAttrUndefined, updateNestedObjectParser } from '@/utils'
+import { updateProductById } from '@/databases/models/repositories'
 
 class Furniture extends Product {
   async createProduct() {
@@ -20,6 +22,23 @@ class Furniture extends Product {
     }
 
     return newProduct
+  }
+
+  async updateProduct(productId: any) {
+    // 1. remove attr has null undefined
+    const objectParams = removeAttrUndefined(this)
+
+    // 2. check update where?
+    if (objectParams.productAttributes) {
+      // update child
+      await updateProductById({
+        productId,
+        payload: updateNestedObjectParser(objectParams.productAttributes),
+        model: FurnitureModel
+      })
+    }
+
+    return await super.updateProduct(productId, updateNestedObjectParser(objectParams))
   }
 }
 

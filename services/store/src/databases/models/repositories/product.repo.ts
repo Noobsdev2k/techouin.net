@@ -1,17 +1,18 @@
 import { Types } from 'mongoose'
 import { ProductModel } from '../product.model'
 
-export const publishProductByShop = async ({ product_shop, product_id }: any) => {
-  const [foundShop] = await Promise.all([
-    ProductModel.findOne({
-      productShop: new Types.ObjectId(product_shop),
-      _id: new Types.ObjectId(product_id)
-    })
-  ])
-  if (!foundShop) return null
+export const publishProductByShop = async ({ productShop, productId }: any) => {
+  // find one
+  const foundShop = await ProductModel.findOne({
+    productShop: new Types.ObjectId(productShop),
+    _id: new Types.ObjectId(productId)
+  })
 
-  foundShop.isPublish = true
+  if (!foundShop) return foundShop
+
+  // update isDraft, isPublish
   foundShop.isDraft = false
+  foundShop.isPublish = true
 
   const { modifiedCount } = await foundShop.updateOne(foundShop)
 
@@ -28,12 +29,11 @@ export const findAllPublishForShop = async ({ query, limit, skip }: any) => {
 
 export const queryProduct = async ({ query, limit, skip }: any) => {
   return await ProductModel.find(query)
-    .populate('product_shop', 'name email -_id')
+    // .populate('productShop', 'name email -_id')
     .sort({ updateAt: -1 })
     .skip(skip)
     .limit(limit)
     .lean()
-    .exec()
 }
 
 export const updateProductById = async ({ productId, bodyUpdate, model, isNew = true }: any) => {
