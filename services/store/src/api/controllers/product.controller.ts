@@ -55,6 +55,22 @@ class ProductController {
       })
     })
   }
+
+  findAllProducts = async (req: IRequest, res: Response, next: NextFunction) => {
+    OK({
+      res,
+      message: 'Find all product success',
+      metadata: await ProductService.findAllProducts(req.params)
+    })
+  }
+
+  findProduct = async (req: IRequest, res: Response, next: NextFunction) => {
+    OK({
+      res,
+      message: 'Find product success',
+      metadata: await ProductService.findOneProduct(req.params.productId)
+    })
+  }
 }
 
 export default new ProductController()

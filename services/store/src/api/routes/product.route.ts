@@ -5,9 +5,9 @@ import { Authentication } from '../middlewares/auth.middleware'
 
 const router = express.Router()
 
-router.get('/', (req: Request, res: Response) => {
-  return res.status(200).json({ status: 'Welcome to mermartvn!!!' })
-})
+// router.get('/', (req: Request, res: Response) => {
+//   return res.status(200).json({ status: 'Welcome to mermartvn!!!' })
+// })
 
 // router.get('/search/:keySearch', asyncHandler(productController.searchProducts))
 
@@ -21,9 +21,9 @@ const aliasSearch = (req: Request, res: Response, next: NextFunction) => {
 
 // router.get('/advanced-search', aliasSearch, asyncHandler(productController.advancedSearch))
 
-// router.get('/', asyncHandler(productController.findAllProducts))
+router.get('/', asyncHandler(productController.findAllProducts))
 
-// router.get('/:product_id', asyncHandler(productController.findProduct))
+router.get('/:productId', asyncHandler(productController.findProduct))
 
 // authentication
 router.use(asyncHandler(Authentication))

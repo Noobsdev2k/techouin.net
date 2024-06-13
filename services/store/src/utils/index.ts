@@ -16,12 +16,12 @@ export const hashPassword = async (password: string) => {
 export const comparePassword = async (password: string, hashPassword: string) =>
   await bcrypt.compare(password, hashPassword)
 
-export function generateOTP(phone: string) {
-  let OTP = ''
-  for (let i = 0; i < 6; i++) {
-    OTP += phone[Math.floor(Math.random() * 10)]
-  }
-  return OTP
+export const getSelectData = (select: any = []) => {
+  return Object.fromEntries(select.map((el: any) => [el, 1]))
+}
+
+export const unGetSelectData = (select: any = []) => {
+  return Object.fromEntries(select.map((el: any) => [el, 0]))
 }
 
 export const Headers = {
