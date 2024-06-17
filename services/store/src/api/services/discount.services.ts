@@ -133,7 +133,7 @@ class DiscountService {
         discountShopId: convert2ObjectId(shopId),
         discountIsActive: true
       },
-      unSelect: ['__v', 'discount_shop_id'],
+      unSelect: ['__v', 'discountShopId'],
       model: discountModel
     })
   }
