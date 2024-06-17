@@ -30,9 +30,8 @@ class DiscountController {
     OK({
       res,
       message: 'Get Discount Code success',
-      metadata: DiscountService.getAllDiscountCodeWithProduct({
-        ...req.body,
-        shopId: req.user.userId
+      metadata: await DiscountService.getAllDiscountCodeWithProduct({
+        ...req.query
       })
     })
   }
@@ -52,8 +51,7 @@ class DiscountController {
       res,
       message: 'Get discount amount success',
       metadata: await DiscountService.getDiscountAmount({
-        ...req.body,
-        shopId: req.user.userId
+        ...req.body
       })
     })
   }

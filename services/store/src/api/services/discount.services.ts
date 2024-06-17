@@ -112,8 +112,7 @@ class DiscountService {
     if (discountAppliesTo === 'specific') {
       // get by product ids
       filter = {
-        _id: { $in: discountProductIds },
-        isPublish: true
+        _id: { $in: discountProductIds, isPublish: true }
       }
     }
 
@@ -218,19 +217,19 @@ class DiscountService {
         discountShopId: convert2ObjectId(shopId)
       }
     })
-    console.log(foundDiscount)
+    if (!foundDiscount) throw new Api400Error('Discount not exists')
+    const data = await discountModel.findByIdAndUpdate(foundDiscount._id, {
+      $pull: {
+        discountUsersUsed: userId
+      },
+      $inc: {
+        discountMaxUsers: 1,
+        discountUsesCount: -1
+      }
+    })
+    console.log(data)
 
-    if (!discountModel) throw new Api400Error('Discount not exists')
-    return {}
-    // return discountModel.findByIdAndUpdate(foundDiscount._id, {
-    //   $pull: {
-    //     discountUsersUsed: userId
-    //   },
-    //   $inc: {
-    //     discountMaxUsers: 1,
-    //     discountUsesCount: -1
-    //   }
-    // })
+    return { data }
   }
 }
 

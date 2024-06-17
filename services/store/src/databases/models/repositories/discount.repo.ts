@@ -26,6 +26,8 @@ export const findAllDiscountCodesSelect = async ({
   return await model.find(filter).sort(sortBy).skip(skip).limit(limit).select(getSelectData(select)).lean()
 }
 
-export const checkDiscountExists = async (model: any, filter = {}) => {
-  return model.find(filter)
+export const checkDiscountExists = async ({ model, filter }: any) => {
+  console.log(filter)
+
+  return await model.findOne(filter).lean()
 }
