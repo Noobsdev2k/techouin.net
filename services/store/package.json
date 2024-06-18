@@ -31,15 +31,16 @@
     "eslint-plugin-prettier": "^4.2.1",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.7",
-    "prisma": "^4.14.1",
     "rimraf": "^4.4.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.0.3"
   },
   "dependencies": {
+    "@types/multer": "^1.4.11",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
+    "cloudinary": "^2.2.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

@@ -12,6 +12,7 @@ class Product {
   public productShop: string
   public productAttributes: object
   public productQuantity: number
+  public productVariations: []
   constructor({
     productName,
     productThumb,
@@ -20,6 +21,7 @@ class Product {
     productType,
     productShop,
     productAttributes,
+    productVariations,
     productQuantity
   }: any) {
     this.productName = productName
@@ -30,6 +32,7 @@ class Product {
     this.productShop = productShop
     this.productAttributes = productAttributes
     this.productQuantity = productQuantity
+    this.productVariations = productVariations
   }
 
   // create new Product

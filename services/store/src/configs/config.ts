@@ -11,6 +11,11 @@ const config = {
     username: process.env.MONGO_USERNAME,
     password: process.env.MONGO_PASSWORD
   },
+  upload: {
+    cloud_name: 'dk4gkjn0g',
+    api_key: '778434668915849',
+    api_secret: process.env.CLOUDINARY_API_SECRET
+  }
 }
 
 export default config
