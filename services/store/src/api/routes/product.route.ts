@@ -9,7 +9,7 @@ const router = express.Router()
 //   return res.status(200).json({ status: 'Welcome to mermartvn!!!' })
 // })
 
-// router.get('/search/:keySearch', asyncHandler(productController.searchProducts))
+router.get('/search/:keySearch', asyncHandler(productController.searchProducts))
 
 const aliasSearch = (req: Request, res: Response, next: NextFunction) => {
   req.query.page = '1'
@@ -19,7 +19,7 @@ const aliasSearch = (req: Request, res: Response, next: NextFunction) => {
   next()
 }
 
-// router.get('/advanced-search', aliasSearch, asyncHandler(productController.advancedSearch))
+router.get('/advanced-search', aliasSearch, asyncHandler(productController.advancedSearch))
 
 router.get('/', asyncHandler(productController.findAllProducts))
 

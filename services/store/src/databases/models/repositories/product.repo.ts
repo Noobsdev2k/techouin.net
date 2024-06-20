@@ -1,6 +1,7 @@
 import { Types } from 'mongoose'
 import { ProductModel } from '../product.model'
 import { convert2ObjectId, unGetSelectData } from '@/utils'
+import SearchQuery from '@/utils/searchquery'
 
 export const publishProductByShop = async ({ productShop, productId }: any) => {
   // find one
@@ -76,16 +77,35 @@ export const checkProductByServer = async (products: any) => {
   )
 }
 
-// // search full text
-// export const searchProductByUser = async ({ keySearch }: any) => {
-//   const regexSearch = new RegExp(keySearch)
-//   return await ProductModel.find(
-//     {
-//       isPublished: true,
-//       $text: { $search: regexSearch }
-//     },
-//     { score: { $meta: 'textScore' } }
-//   )
-//     .sort({ score: { $meta: 'textScore' } })
-//     .lean()
-// }
+// search full text
+export const searchProductByUser = async ({ keySearch }: any) => {
+  console.log(keySearch)
+
+  const regexSearch = new RegExp(keySearch)
+
+  const results = await ProductModel.find(
+    {
+      isPublish: true,
+      $text: { $search: regexSearch.toString() }
+    },
+    {
+      score: { $meta: 'textScore' }
+    }
+  )
+    .sort({ score: { $meta: 'textScore' } })
+    .lean()
+
+  return results
+}
+
+/**
+ * ?productPrice[gte]=2&productQuantity[gt]=3&...[lte]=5&...[lt]=6&keySearch=abc
+ *
+ * @param queryInput
+ * @return {Promise<void>}
+ */
+export const advancedSearch = async (queryInput: any) => {
+  const features = new SearchQuery(ProductModel.find(), queryInput).filter().sort().limitFields().paging()
+
+  return await features.query
+}

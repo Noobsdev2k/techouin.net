@@ -71,6 +71,21 @@ class ProductController {
       metadata: await ProductService.findOneProduct(req.params.productId)
     })
   }
+
+  searchProducts = async (req: IRequest, res: Response, next: NextFunction) => {
+    OK({
+      res,
+      message: 'Search product success',
+      metadata: await ProductService.searchProducts({ keySearch: req.params.keySearch })
+    })
+  }
+  advancedSearch = async (req: IRequest, res: Response, next: NextFunction) => {
+    OK({
+      res,
+      message: 'Search product advance success',
+      metadata: await ProductService.advancedSearch(req.query)
+    })
+  }
 }
 
 export default new ProductController()

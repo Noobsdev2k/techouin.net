@@ -1,12 +1,14 @@
 'use strict'
 
 import {
+  advancedSearch,
   findAllDraftsForShop,
   findAllProducts,
   findAllPublishForShop,
   findProduct,
   getProductById,
-  publishProductByShop
+  publishProductByShop,
+  searchProductByUser
 } from '@/databases/models/repositories'
 import { Api400Error, Api401Error } from '../middlewares'
 import { Clothing, Electronic, Furniture } from '@/factories'
@@ -48,9 +50,9 @@ class ProductService {
     return await findAllPublishForShop({ query, limit, skip })
   }
 
-  // static async searchProducts({ keySearch }) {
-  //   return await searchProductByUser({ keySearch })
-  // }
+  static async searchProducts({ keySearch }: any) {
+    return await searchProductByUser({ keySearch })
+  }
 
   static async findAllProducts({ limit = 50, sort = 'ctime', page = 1, filter = { isPublished: true } }) {
     return await findAllProducts({
@@ -62,12 +64,16 @@ class ProductService {
     })
   }
 
-  static async findOneProduct(productId: any) {
+  static async findOneProduct(productId: string) {
     return findProduct({ productId })
   }
 
   static async findProductById(productId: string) {
     return await getProductById(productId)
+  }
+
+  static async advancedSearch(query: any) {
+    return await advancedSearch(query)
   }
 }
 ProductService.registerProductType('Electronics', Electronic)
