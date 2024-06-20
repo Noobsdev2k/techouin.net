@@ -14,8 +14,8 @@ router.get('/search/:keySearch', asyncHandler(productController.searchProducts))
 const aliasSearch = (req: Request, res: Response, next: NextFunction) => {
   req.query.page = '1'
   req.query.limit = '5'
-  req.query.sort = '-name'
-  req.query.fields = 'name, price'
+  req.query.sort = '-productName'
+  req.query.fields = 'productName, productPrice'
   next()
 }
 
