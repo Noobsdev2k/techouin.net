@@ -14,4 +14,6 @@ router.use(asyncHandler(Authentication))
 
 router.post('', uploadDisk.single('file'), asyncHandler(uploadController.UploadImage))
 
+router.post('/multiple', uploadDisk.array('files', 4), asyncHandler(uploadController.UploadMultiImage))
+
 export default router
