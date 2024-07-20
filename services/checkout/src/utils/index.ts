@@ -1,0 +1,40 @@
+export const checkEnable = (value: any) => {
+  return value === 'true'
+}
+
+export const Headers = {
+  API_KEY: 'x-api-key',
+  AUTHORIZATION: 'authorization',
+  CLIENT_ID: 'x-client-id',
+  REFRESH_TOKEN: 'x-refresh-token'
+}
+
+export enum OrderEvent {
+  CREATED = 'ORDER_CREATED',
+  PAYMENT_PENDING = 'ORDER_PAYMENT_PENDING',
+  PAYMENT_FAILED = 'ORDER_PAYMENT_FAILED',
+  PAYMENT_SUCCESS = 'ORDER_PAYMENT_SUCCESS',
+  CONFIRMED = 'ORDER_CONFIRMED',
+  PROCESSING = 'ORDER_PROCESSING',
+  SHIPPED = 'ORDER_SHIPPED',
+  OUT_FOR_DELIVERY = 'ORDER_OUT_FOR_DELIVERY',
+  DELIVERED = 'ORDER_DELIVERED',
+  CANCELLED = 'ORDER_CANCELLED',
+  RETURNED = 'ORDER_RETURNED',
+  REFUNDED = 'ORDER_REFUNDED'
+  // Add more events as needed for your specific order flow
+}
+
+export enum CartEvent {
+  ITEM_ADDED = 'CART_ITEM_ADDED',
+  ITEM_REMOVED = 'CART_ITEM_REMOVED',
+  ITEM_QUANTITY_UPDATED = 'CART_ITEM_QUANTITY_UPDATED',
+  CART_CLEARED = 'CART_CLEARED',
+  CHECKOUT_STARTED = 'CART_CHECKOUT_STARTED',
+  CHECKOUT_COMPLETED = 'CART_CHECKOUT_COMPLETED',
+  PROMO_CODE_APPLIED = 'CART_PROMO_CODE_APPLIED',
+  PROMO_CODE_REMOVED = 'CART_PROMO_CODE_REMOVED'
+  // Add more events specific to your cart functionality
+}
+
+export type TOPIC_EVENT = 'OrderEvents' | 'CartEvents'
