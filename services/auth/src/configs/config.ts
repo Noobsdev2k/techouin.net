@@ -11,6 +11,9 @@ const config = {
     username: process.env.MONGO_USERNAME,
     password: process.env.MONGO_PASSWORD
   },
+  logger: {
+    serviceName: process.env.SERVICE_NAME
+  }
 }
 
 export default config

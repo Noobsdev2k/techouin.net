@@ -25,7 +25,17 @@ if (checkEnable(config.db.enable)) {
 app.use('', router)
 // Handle error middleware
 import { is404Handler, returnError } from './middlewares/error.middleware'
+import logger from '@/configs/config.logs'
 app.use(is404Handler)
 app.use(returnError)
 
+// init logger
+import expressWinston from 'express-winston'
+
+app.use(
+  expressWinston.logger({
+    winstonInstance: logger,
+    statusLevels: true
+  })
+)
 export default app

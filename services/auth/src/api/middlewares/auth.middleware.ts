@@ -1,9 +1,11 @@
 import JWT from 'jsonwebtoken'
-import { NextFunction, Request, Response } from 'express'
-import { Api400Error, Api401Error, Api404Error } from './error.response'
-import { Headers } from '@/utils'
+import { NextFunction, Response } from 'express'
+import { Api400Error, Api401Error, Api403Error, Api404Error } from './error.response'
+import { ActionType, Headers } from '@/utils'
 import keyTokenServices from '../services/keyToken.services'
 import { IRequest } from '@/configs/interfaces'
+import { AccessControl } from 'accesscontrol'
+import { getRoleListOfUser } from '@/utils/role.repo'
 
 export const Authentication = async (req: IRequest, res: Response, next: NextFunction) => {
   const userId = req.headers[Headers.CLIENT_ID] as string
@@ -40,5 +42,31 @@ export const Authentication = async (req: IRequest, res: Response, next: NextFun
     return next()
   } catch (err) {
     throw err
+  }
+}
+
+export const grantAccess = (action: ActionType, resource: string) => {
+  return async (req: IRequest, res: Response, next: NextFunction) => {
+    try {
+      const rbac = new AccessControl()
+      rbac.setGrants(await getRoleListOfUser(req.user.userId))
+
+      const { roleName } = req.user.role
+
+      let isAction = false
+      const permission = rbac.can(roleName as string)[action](resource)
+      console.log(permission)
+
+      if (permission.granted) {
+        isAction = true
+      }
+
+      if (!isAction) {
+        throw new Api403Error('Permission denied')
+      }
+      next()
+    } catch (error) {
+      next(error)
+    }
   }
 }

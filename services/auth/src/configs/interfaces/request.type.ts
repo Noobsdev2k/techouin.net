@@ -11,6 +11,7 @@ export interface IRequest extends Request {
   keyStore: object
   user: {
     userId: string
+    role: object | any
   }
   refreshToken: string | string[]
 }

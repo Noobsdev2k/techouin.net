@@ -6,6 +6,7 @@ import { OtpService } from '.'
 import otpModel from '@/databases/models/otp.model'
 import { createTokenPair, generateKeyPair } from '@/helpers/auth'
 import keyTokenServices from './keyToken.services'
+import roleModel from '@/databases/models/role.model'
 
 class AuthService {
   /**
@@ -28,8 +29,14 @@ class AuthService {
     }
     // hash password
     const hashPass = await hashPassword(password)
+
+    //Get the default "user" role (assuming it exists)
+    const defaultRole = await roleModel.findOne({ name: 'user' })
+    if (!defaultRole) {
+      throw new Api401Error('Default "user" role not found!')
+    }
     //create new user
-    const newUser = await userModel.create({ name, email, password: hashPass, phone })
+    const newUser = await userModel.create({ name, email, password: hashPass, phone, roles: defaultRole })
 
     //create otp
     if (newUser) {
@@ -101,7 +108,9 @@ class AuthService {
           privateKey
         })
         if (!publicKeyDb) throw new Api401Error('Create key token failed')
-        const tokens = await createTokenPair({ userId: activeUser._id, email }, publicKeyDb, privateKey)
+
+        const role = await roleModel.findOne({ _id: activeUser.roles })
+        const tokens = await createTokenPair({ userId: activeUser._id, email, roles: role }, publicKeyDb, privateKey)
         return { activeUser, tokens }
       }
     }
@@ -121,8 +130,11 @@ class AuthService {
     const match = comparePassword(password, isUser.password)
     if (!match) throw new Api401Error('Password does not match')
     const { privateKey, publicKey } = generateKeyPair()
-    const { _id: userId } = isUser
-    const tokens = await createTokenPair({ userId, email }, publicKey, privateKey)
+    const { _id: userId, roles } = isUser
+
+    const role = await roleModel.findOne({ _id: roles })
+
+    const tokens = await createTokenPair({ userId, email, role }, publicKey, privateKey)
     await keyTokenServices.createKeyToken({
       refreshToken: tokens?.refreshToken,
       userId,
@@ -140,5 +152,7 @@ class AuthService {
     if (!delKey) throw new Api400Error(`Invalid request`)
     return delKey
   }
+
+  //handle refeshToken
 }
 export default new AuthService()

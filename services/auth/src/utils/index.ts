@@ -1,7 +1,6 @@
 import { Types } from 'mongoose'
 import bcrypt from 'bcrypt'
 
-
 export const checkEnable = (value: any) => {
   return value === 'true'
 }
@@ -17,7 +16,6 @@ export const hashPassword = async (password: string) => {
 export const comparePassword = async (password: string, hashPassword: string) =>
   await bcrypt.compare(password, hashPassword)
 
-
 export function generateOTP(phone: string) {
   let OTP = ''
   for (let i = 0; i < 6; i++) {
@@ -31,4 +29,12 @@ export const Headers = {
   AUTHORIZATION: 'authorization',
   CLIENT_ID: 'x-client-id',
   REFRESH_TOKEN: 'x-refresh-token'
+}
+
+// Option 1: Enum
+export enum ActionType {
+  CREATE = 'create',
+  READ = 'read',
+  UPDATE = 'update',
+  DELETE = 'delete'
 }

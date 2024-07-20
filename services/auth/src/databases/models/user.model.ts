@@ -23,6 +23,10 @@ const userSchema = new Schema(
       unique: true,
       trim: true
     },
+    avatar: {
+      type: String,
+      default: ''
+    },
     verify: {
       type: Boolean,
       default: false
@@ -33,8 +37,8 @@ const userSchema = new Schema(
       default: 'inactive'
     },
     roles: {
-      type: Array,
-      default: []
+      type: Schema.Types.ObjectId,
+      ref: 'Role'
     }
   },
   {
