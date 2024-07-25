@@ -4,6 +4,7 @@ services:
     image: 'wurstmeister/zookeeper:latest'
     ports:
       - '2181:2181'
+    restart: always
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     volumes:
@@ -12,12 +13,27 @@ services:
     image: 'wurstmeister/kafka:latest'
     ports:
       - ${KAFKA_PORT}:${KAFKA_PORT}
+    restart: always
     volumes:
       - 'kafka_data:/bitnami'
     environment:
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_ADVERTISED_HOST_NAME=localhost
+      - KAFKA_ADVERTISED_HOST_NAME=192.168.1.37
+      - KAFKA_BROKER_ID=1
     depends_on:
+      - zookeeper
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - 8888:8888s
+    environment:
+      DYNAMIC_CONFIG_ENABLED: true
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 192.168.1.37:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    depends_on:
+      - kafka
       - zookeeper
   mongo:
     image: mongo
