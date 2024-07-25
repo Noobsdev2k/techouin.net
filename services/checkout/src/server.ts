@@ -20,6 +20,7 @@ const PORT = process.env.PORT || 3055
 
 const server = app.listen(PORT, () => {
   console.log(`------::----${process.env.SERVICE_NAME} start with port ${PORT}`)
+  logger.info(`------::----${process.env.SERVICE_NAME} start with port ${PORT}`)
 })
 
 process.on('SIGINT', () => {

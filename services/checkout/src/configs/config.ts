@@ -14,7 +14,11 @@ const config = {
   logger: {
     serviceName: process.env.SERVICE_NAME
   },
-  kafka: {}
+  kafka: {
+    client_id: process.env.CLIENT_ID,
+    group_id: process.env.GROUP_ID,
+    broker: process.env.BROKER
+  }
 }
 
 export default config

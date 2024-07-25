@@ -4,12 +4,12 @@ export type MessageBrokerType = {
   //producer
   connectProducer: <T>() => Promise<T>
   disconnectProducer: () => Promise<void>
-  publish: (data: unknown) => Promise<boolean>
+  publish: (data: PublishType) => Promise<boolean>
 
   //consumer
   connectConsumer: <T>() => Promise<T>
   disconnectConsumer: () => Promise<void>
-  subscribe: (messageHandler: MessageBrokerType, Topic: string) => Promise<void>
+  subscribe: (messageHandler: MessageHandler, Topic: TOPIC_EVENT) => Promise<void>
 }
 
 export interface PublishType {

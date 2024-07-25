@@ -23,10 +23,6 @@ if (checkEnable(config.db.enable)) {
 }
 // init routes
 app.use('', router)
-// Handle error middleware
-import { is404Handler, returnError } from './middlewares'
-app.use(is404Handler)
-app.use(returnError)
 
 // init logger
 import expressWinston from 'express-winston'
@@ -38,5 +34,15 @@ app.use(
     statusLevels: true
   })
 )
+
+// Handle error middleware
+import { is404Handler, returnError } from './middlewares'
+import { ConnectBroker } from '@/broker'
+
+app.use(is404Handler)
+app.use(returnError)
+
+//connect broker
+ConnectBroker()
 
 export default app
