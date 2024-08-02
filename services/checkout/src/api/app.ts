@@ -37,12 +37,8 @@ app.use(
 
 // Handle error middleware
 import { is404Handler, returnError } from './middlewares'
-import { ConnectBroker } from '@/broker'
 
 app.use(is404Handler)
 app.use(returnError)
-
-//connect broker
-ConnectBroker()
 
 export default app

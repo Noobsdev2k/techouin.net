@@ -75,6 +75,15 @@ class ProductService {
   static async advancedSearch(query: any) {
     return await advancedSearch(query)
   }
+  static async serveRPCRequest(payload: any) {
+    const { type, data } = payload
+    switch (type) {
+      case 'PRODUCT_VIEW':
+        return this.findProductById(data)
+      default:
+        break
+    }
+  }
 }
 ProductService.registerProductType('Electronics', Electronic)
 ProductService.registerProductType('Clothing', Clothing)

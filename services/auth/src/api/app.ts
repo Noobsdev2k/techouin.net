@@ -26,8 +26,13 @@ app.use('', router)
 // Handle error middleware
 import { is404Handler, returnError } from './middlewares/error.middleware'
 import logger from '@/configs/config.logs'
+import keyTokenServices from './services/keyToken.services'
+import { RPCObserver } from '@/subscriber/subscriber-message'
 app.use(is404Handler)
 app.use(returnError)
+
+//message consumer
+RPCObserver('AUTH_RPC', keyTokenServices)
 
 // init logger
 import expressWinston from 'express-winston'

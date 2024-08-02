@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/amqplib": "^0.10.5",
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
@@ -24,6 +25,7 @@
     "@types/morgan": "^1.9.5",
     "@types/node": "^18.15.11",
     "@types/nodemailer": "^6.4.9",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.37.0",
@@ -39,6 +41,7 @@
   },
   "dependencies": {
     "accesscontrol": "^2.2.1",
+    "amqplib": "^0.10.4",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
@@ -54,6 +57,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "otp-generator": "^4.0.1",
+    "uuid": "^10.0.0",
     "winston": "^3.13.1",
     "winston-daily-rotate-file": "^5.0.0",
     "winston-mongodb": "^5.1.1",

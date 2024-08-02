@@ -15,6 +15,9 @@ const config = {
     cloud_name: 'dk4gkjn0g',
     api_key: '778434668915849',
     api_secret: process.env.CLOUDINARY_API_SECRET
+  },
+  rabbitmq: {
+    amqpUri: process.env.AMQP_URI
   }
 }
 

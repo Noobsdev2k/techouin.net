@@ -1,40 +1,40 @@
 version: '3.8'
 services:
-  zookeeper:
-    image: 'wurstmeister/zookeeper:latest'
-    ports:
-      - '2181:2181'
-    restart: always
-    environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
-    volumes:
-      - 'zookeeper_data:/bitnami'
-  kafka:
-    image: 'wurstmeister/kafka:latest'
-    ports:
-      - ${KAFKA_PORT}:${KAFKA_PORT}
-    restart: always
-    volumes:
-      - 'kafka_data:/bitnami'
-    environment:
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_ADVERTISED_HOST_NAME=192.168.1.37
-      - KAFKA_BROKER_ID=1
-    depends_on:
-      - zookeeper
-  kafka-ui:
-    container_name: kafka-ui
-    image: provectuslabs/kafka-ui:latest
-    ports:
-      - 8888:8888
-    environment:
-      DYNAMIC_CONFIG_ENABLED: true
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: 192.168.1.37:9092
-      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
-    depends_on:
-      - kafka
-      - zookeeper
+  # zookeeper:
+  #   image: 'wurstmeister/zookeeper:latest'
+  #   ports:
+  #     - '2181:2181'
+  #   restart: always
+  #   environment:
+  #     - ALLOW_ANONYMOUS_LOGIN=yes
+  #   volumes:
+  #     - 'zookeeper_data:/bitnami'
+  # kafka:
+  #   image: 'wurstmeister/kafka:latest'
+  #   ports:
+  #     - ${KAFKA_PORT}:${KAFKA_PORT}
+  #   restart: always
+  #   volumes:
+  #     - 'kafka_data:/bitnami'
+  #   environment:
+  #     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+  #     - KAFKA_ADVERTISED_HOST_NAME=${KAFKA_HOST_NAME}
+  #     - KAFKA_BROKER_ID=1
+  #   depends_on:
+  #     - zookeeper
+  # kafka-ui:
+  #   container_name: kafka-ui
+  #   image: provectuslabs/kafka-ui:latest
+  #   ports:
+  #     - 8888:8080
+  #   environment:
+  #     DYNAMIC_CONFIG_ENABLED: true
+  #     KAFKA_CLUSTERS_0_NAME: local
+  #     KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: ${KAFKA_HOST_NAME}:9092
+  #     KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+  #   depends_on:
+  #     - kafka
+  #     - zookeeper
   mongo:
     image: mongo
     restart: always
@@ -58,6 +58,15 @@ services:
     volumes:
       - progresDB:/data
 
+  rabbit:
+    image: rabbitmq:3-management-alpine
+    container_name: ec-rabbit
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - .docker/data/rabbit:/data
+    restart: unless-stopped
   # nginx:
   #   depends_on:
   #     - admin

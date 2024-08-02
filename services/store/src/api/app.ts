@@ -25,7 +25,10 @@ if (checkEnable(config.db.enable)) {
 app.use('', router)
 // Handle error middleware
 import { is404Handler, returnError } from './middlewares'
+import { RPCObserver } from '@/subscriber/subscriber-message'
+import ProductService from './services/product.services'
 app.use(is404Handler)
 app.use(returnError)
 
+RPCObserver('PRODUCT_RPC', ProductService)
 export default app

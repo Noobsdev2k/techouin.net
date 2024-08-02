@@ -3,14 +3,14 @@ import { NextFunction, Request, Response } from 'express'
 import { Api400Error, Api401Error, Api404Error } from './error.response'
 import { Headers } from '@/utils'
 import { IRequest } from '@/configs/interfaces'
-import keyTokenServices from '../services/keyToken.services'
+import { RPCRequest } from '@/subscriber/subscriber-message'
 
 export const Authentication = async (req: IRequest, res: Response, next: NextFunction) => {
   const userId = req.headers[Headers.CLIENT_ID] as string
 
   if (!userId) throw new Api401Error('Invalid Request')
 
-  const keyStore = await keyTokenServices.findByUserId(userId)
+  const keyStore = await RPCRequest('AUTH_RPC', { type: 'KEYTOKEN_VIEW', data: userId })
 
   if (!keyStore) throw new Api404Error('Not Found keyStore')
   if (req.headers[Headers.REFRESH_TOKEN]) {

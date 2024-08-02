@@ -18,6 +18,9 @@ const config = {
     client_id: process.env.CLIENT_ID,
     group_id: process.env.GROUP_ID,
     broker: process.env.BROKER
+  },
+  rabbitmq: {
+    amqpUri: process.env.AMQP_URI
   }
 }
 

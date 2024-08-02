@@ -51,5 +51,14 @@ class KeyTokenService {
   deleteKeyById = async (userId: string) => {
     return await tokenKeyModel.findByIdAndDelete({ userId: userId })
   }
+  serveRPCRequest = async (payload: any) => {
+    const { type, data } = payload
+    switch (type) {
+      case 'KEYTOKEN_VIEW':
+        return await this.findByUserId(data)
+      default:
+        break
+    }
+  }
 }
 export default new KeyTokenService()

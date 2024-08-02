@@ -13,6 +13,9 @@ const config = {
   },
   logger: {
     serviceName: process.env.SERVICE_NAME
+  },
+  rabbitmq: {
+    amqpUri: process.env.AMQP_URI
   }
 }
 
