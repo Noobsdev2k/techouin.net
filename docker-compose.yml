@@ -81,32 +81,59 @@ services:
   #   volumes:
   #     - ./nginx:/app/nginx
 
-  # proxy:
-  #   depends_on:
-  #     - auth
-  #   build:
-  #     dockerfile: Dockerfile
-  #     context: ./services/proxy
-  #   restart: always
-  #   ports:
-  #     - ${PROXY_PORT}:${PROXY_PORT}
-  #   volumes:
-  #     - ./nginx:/app/nginx
-  # auth:
-  #   build:
-  #     context: ./services/auth
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./services/auth:/app/services/auth
-  #     - /app/services/auth/node_modules
-  #   depends_on:
-  #     - postgresql
-  #     - mongo
-  #     - kafka
-  #   ports:
-  #     - '8080:8080'
-  #   env_file:
-  #     - ./services/auth/.env
+  proxy:
+    depends_on:
+      - auth
+    build:
+      dockerfile: Dockerfile
+      context: ./services/proxy
+    restart: always
+    ports:
+      - ${PROXY_PORT}:${PROXY_PORT}
+    volumes:
+      - ./nginx:/app/nginx
+  auth:
+    build:
+      context: ./services/auth
+      dockerfile: Dockerfile
+    volumes:
+      - ./services/auth:/app/services/auth
+      - /app/services/auth/node_modules
+    depends_on:
+      - mongo
+      - rabbit
+    ports:
+      - '8080:8080'
+    env_file:
+      - ./services/auth/.env
+  store:
+    build:
+      context: ./services/store
+      dockerfile: Dockerfile
+    volumes:
+      - ./services/store:/app/services/store
+      - /app/services/store/node_modules
+    depends_on:
+      - mongo
+      - rabbit
+    ports:
+      - '8081:8081'
+    env_file:
+      - ./services/store/.env
+  checkout:
+    build:
+      context: ./services/checkout
+      dockerfile: Dockerfile
+    volumes:
+      - ./services/checkout:/app/services/checkout
+      - /app/services/checkout/node_modules
+    depends_on:
+      - mongo
+      - rabbit
+    ports:
+      - '8082:8082'
+    env_file:
+      - ./services/checkout/.env
 
   # client:
   #   build:
