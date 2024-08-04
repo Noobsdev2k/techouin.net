@@ -1,1 +1,1 @@
-export { default } from './product.route'
+export { default } from './email.route'
