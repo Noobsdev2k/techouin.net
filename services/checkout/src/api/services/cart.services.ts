@@ -1,4 +1,3 @@
-import { exit } from 'process'
 import { createUserCart, findCartByUserId, updateUserCartQuantity } from '@/databases/repositories/cart.repo'
 import { Api401Error, Api404Error } from '../middlewares'
 import cartModel from '@/databases/model/cart.model'
@@ -9,7 +8,7 @@ class CartServices {
   static async addOrCreate({ userId, payload }: any) {
     const { productId, quantity } = payload
 
-    if (!userId || !productId || !quantity) {
+    if (!userId || !productId || !quantity || quantity <= 0) {
       throw new Api401Error('Missing required fields')
     }
     const checkId = mongoose.Types.ObjectId.isValid(productId)
@@ -25,6 +24,9 @@ class CartServices {
 
     const product = {
       productId,
+      productName: productFound.productName,
+      productThumb: productFound.productThumb,
+      productPrice: productFound.productPrice,
       quantity
     }
 
@@ -51,15 +53,16 @@ class CartServices {
   static async addToCartV2({ userId, shop_order_ids = [] }: any) {
     const { productId, quantity, old_quantity } = shop_order_ids[0]?.item_products[0]
 
+    if (!userId || !productId || !quantity || quantity <= 0) {
+      throw new Api401Error('Missing required fields')
+    }
     // check product
-    const foundProduct: any = await fetch(`http:localhost:8081/product/${productId}`)
-      .then((res: any) => res.json())
-      .catch((error) => console.log(error))
+    const foundProduct = await RPCRequest('PRODUCT_RPC', { type: 'PRODUCT_VIEW', data: productId })
 
-    if (!foundProduct.metadata[0]) throw new Api404Error('Product not found')
+    if (!foundProduct) throw new Api404Error('Product not found')
 
     // compare
-    if (foundProduct.metadata[0].productShop !== shop_order_ids[0]?.shopId) {
+    if (foundProduct.productShop !== shop_order_ids[0]?.shopId) {
       throw new Api404Error('Product do not belong to the shop')
     }
 
