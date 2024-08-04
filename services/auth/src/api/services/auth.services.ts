@@ -1,5 +1,5 @@
 import userModel from '@/databases/models/user.model'
-import { Api400Error, Api401Error } from '../middlewares'
+import { Api400Error, Api401Error, Api403Error } from '../middlewares'
 import { comparePassword, generateOTP, hashPassword } from '@/utils'
 
 import { OtpService } from '.'
@@ -44,7 +44,7 @@ class AuthService {
       const Otp = await OtpService.createOtp(otp, email)
       return {
         user: newUser,
-        otp: Otp
+        otp: otp
       }
     }
     return null
@@ -154,5 +154,48 @@ class AuthService {
   }
 
   //handle refeshToken
+  refreshToken = async ({ refreshToken, user, keyStore }: any) => {
+    const { userId, email } = user
+    console.log({ userId, email })
+
+    if (keyStore.refreshTokensUsed.includes(refreshToken)) {
+      // notify send email error...
+
+      // delete token in keyStore
+      await keyTokenServices.deleteKeyById(userId)
+      throw new Api403Error('Something wrong happened! Please re-login!')
+    }
+
+    if (refreshToken !== keyStore.refreshToken) throw new Api401Error('Invalid refresh token, shop not registered!')
+
+    // check userId
+    const foundShop = await userModel.findOne({ email }).lean()
+    if (!foundShop) throw new Api401Error('User not registered')
+
+    // create accessToken, refreshToken
+    const tokens: any = await createTokenPair({ userId, email }, keyStore.publicKey, keyStore.privateKey)
+
+    // update token
+    await keyStore.updateOne({
+      $set: {
+        refreshToken: tokens.refreshToken
+      },
+      $addToSet: {
+        refreshTokensUsed: refreshToken
+      }
+    })
+
+    // return new tokens
+    return {
+      user,
+      tokens
+    }
+  }
+
+  // google login
+  googleLogin = async (payload: any) => {}
+
+  // facebook login
+  facebookLogin = async (payload: any) => {}
 }
 export default new AuthService()

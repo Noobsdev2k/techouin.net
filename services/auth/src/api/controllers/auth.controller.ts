@@ -36,5 +36,18 @@ class AuthController {
 
     OK({ res, message: 'Logout success', metadata: (await AuthService.logout(req.keyStore)) as any })
   }
+  refreshToken = async (req: IRequest, res: Response, next: NextFunction) => {
+    console.log(req)
+
+    OK({
+      res,
+      message: 'Get new token successfully',
+      metadata: (await AuthService.refreshToken({
+        refreshToken: req.refreshToken,
+        user: req.user,
+        keyStore: req.keyStore
+      })) as any
+    })
+  }
 }
 export default new AuthController()
