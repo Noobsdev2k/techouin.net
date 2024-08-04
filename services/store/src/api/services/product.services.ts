@@ -54,7 +54,7 @@ class ProductService {
     return await searchProductByUser({ keySearch })
   }
 
-  static async findAllProducts({ limit = 50, sort = 'ctime', page = 1, filter = { isPublished: true } }) {
+  static async findAllProducts({ limit = 50, sort = 'ctime', page = 1, filter = { isPublish: true } }) {
     return await findAllProducts({
       limit,
       sort,

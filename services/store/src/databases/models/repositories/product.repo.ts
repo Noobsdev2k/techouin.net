@@ -51,15 +51,13 @@ export const findAllProducts = async ({ limit, sort, page, filter, select }: any
 }
 
 export const findProduct = async ({ productId, unSelect = ['__v', 'productVariations'] }: any) => {
-  console.log(productId, unSelect)
-
-  return await ProductModel.find({ _id: convert2ObjectId(productId) })
+  return await ProductModel.find({ _id: convert2ObjectId(productId), isPublish: true })
     .select(unGetSelectData(unSelect))
     .lean()
 }
 
 export const getProductById = async (productId: string) => {
-  return await ProductModel.findOne({ _id: convert2ObjectId(productId) }).lean()
+  return await ProductModel.findOne({ _id: convert2ObjectId(productId), isPublish: true }).lean()
 }
 
 export const checkProductByServer = async (products: any) => {
