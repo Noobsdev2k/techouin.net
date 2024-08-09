@@ -16,7 +16,7 @@ export default function BlogDetail({ params }: any) {
     const { blogId } = params
     return (
         <>
-            <Header />
+            <Header hidden={false} />
             <div className="extheader-2" style={{ backgroundImage: 'url(/img/bg-image-23.jpg)' }}>
                 <div className="container extheader-2-container"><a className="extheader-2-btn btn" href="#">
                     <svg className="icon icon-arrow-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 9">

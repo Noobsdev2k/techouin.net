@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Header from "./components/Header";
 import { HeroSlider } from './components/Slider'
 import Section_store from "./components/Section";
@@ -12,7 +11,7 @@ import Footer from "./components/Footer";
 export default function Home() {
   return (
     <>
-      <Header abs={false} />
+      <Header hidden={false} />
       <HeroSlider />
       <Section_store />
       <section className="section section_pt0 section_pb0" style={{ backgroundImage: 'url(/img/bg-image-11.jpg)' }}>

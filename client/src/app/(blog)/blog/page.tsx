@@ -5,7 +5,7 @@ import React from 'react'
 export default function Blog() {
     return (
         <>
-            <Header abs={true} />
+            <Header hidden={true} />
             <section className="section">
                 <div className="container section-container">
                     {/* cards 6*/}

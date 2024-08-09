@@ -19,7 +19,7 @@ export default function DetailPage({ params }: any) {
 
     return (
         <>
-            <Header abs={false} />
+            <Header hidden={false} />
             <div className="extheader-5 js-extheader-5">
                 <div className="container extheader-5-container">
                     <ThumbSlider />

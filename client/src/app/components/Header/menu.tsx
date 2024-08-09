@@ -1,6 +1,7 @@
+import { UseActiveReturnType } from '@/core/hooks/useActive'
 import Image from 'next/image'
 import React from 'react'
-import { UseActiveReturnType } from './header'
+
 
 export function NavMenu({ isActive, toggleActive }: UseActiveReturnType) {
     return (

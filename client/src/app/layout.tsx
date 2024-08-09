@@ -1,8 +1,9 @@
 import './globals.scss'
 import type { Metadata } from 'next'
+import { Work_Sans } from 'next/font/google'
 
 
-
+const work_sans = Work_Sans({ subsets: ['vietnamese'] })
 
 export const metadata: Metadata = {
   title: 'Techouin.net',
@@ -16,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='font-worksans'>
+      <body className={work_sans.className}>
         <div className='page'>
           {children}
         </div>
