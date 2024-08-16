@@ -2,11 +2,15 @@ import { BusinessLogicError } from '@/api/middlewares'
 import amqp, { Channel, Connection, ConsumeMessage } from 'amqplib'
 import config from '@/configs/config'
 import { v4 as uuid4 } from 'uuid'
-const { rabbitmq: amqpUri } = config
+const {
+  rabbitmq: { amqpUri }
+} = config
 const AMQP_URI = amqpUri || 'amqp://guest:guest@localhost:5672/'
 
 export async function getChannel(): Promise<Channel> {
   try {
+    console.log(AMQP_URI)
+
     const connection: Connection = await amqp.connect(AMQP_URI as any)
     if (!connection) throw new BusinessLogicError('Connect not established')
 

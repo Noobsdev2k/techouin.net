@@ -127,7 +127,9 @@ class AuthService {
       throw new Api401Error('Email is not active')
     }
     // 2.
-    const match = comparePassword(password, isUser.password)
+    const match = await comparePassword(password, isUser.password)
+    console.log(match)
+
     if (!match) throw new Api401Error('Password does not match')
     const { privateKey, publicKey } = generateKeyPair()
     const { _id: userId, roles } = isUser
