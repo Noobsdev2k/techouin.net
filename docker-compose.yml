@@ -84,6 +84,8 @@ services:
   proxy:
     depends_on:
       - auth
+      - store
+      - checkout
     build:
       dockerfile: Dockerfile
       context: ./services/proxy
