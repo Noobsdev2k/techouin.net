@@ -1,7 +1,6 @@
 // axiosInstance.ts
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios'
 import { cookies } from 'next/headers'
-import { useRouter } from 'next/navigation'
 
 // Define the Axios instance with a base URL and timeout
 const axiosInstance: AxiosInstance = axios.create({
@@ -11,22 +10,18 @@ const axiosInstance: AxiosInstance = axios.create({
     'Content-Type': 'application/json'
   }
 })
-const cookieStore = cookies()
-const router = useRouter()
 // Request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
     // Retrieve the token from cookies
 
-    const token = cookieStore.get('token')
-    const clientId = cookieStore.get('client_id')
-    const refreshToken = cookieStore.get('refresh_token')
-    if (token && clientId && refreshToken) {
+    const token = cookies().get('token')
+    const clientId = cookies().get('client_id')
+    if (token && clientId) {
       // Set the Authorization header with the token
       config.headers = config.headers || {}
       config.headers['authorization'] = token
       config.headers['x-client-id'] = clientId
-      config.headers['x-refresh-token'] = refreshToken
     }
     return config
   },
@@ -46,11 +41,9 @@ axiosInstance.interceptors.response.use(
     // Handle response errors
     if (error.response && (error.response.status === 500 || error.response.status === 401)) {
       // Handle unauthorized errors (e.g., clear token and redirect to login)
-      cookieStore.delete('token')
-      cookieStore.delete('client_id')
-      cookieStore.delete('refresh_token')
+      cookies().delete('token')
+      cookies().delete('client_id')
       // Redirect to login or handle unauthorized access appropriately
-      router.push('/login')
     }
     return Promise.reject(error)
   }
