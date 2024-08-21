@@ -1,6 +1,6 @@
-import Footer from '@/app/components/Footer'
-import Header from '@/app/components/Header'
-import { ProductCard } from '@/app/components/Slider'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+import { ProductCard } from '@/components/Slider'
 import React from 'react'
 
 export default function Shop() {

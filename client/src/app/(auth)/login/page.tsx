@@ -3,12 +3,40 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { AiFillFacebook, AiOutlineFacebook, AiOutlineGoogle } from "react-icons/ai"
+import { AiFillFacebook, AiOutlineGoogle } from "react-icons/ai"
 import Link from "next/link"
 import { PasswordInput } from "@/components/password-input"
+import { useFormFields } from "@/core/hooks/useFormFields"
+import { useState, useTransition } from "react"
+import { login } from "./actions"
+import { loginSchema, LoginValues } from "@/lib/validation"
+import LoadingButton from "@/components/loading-button"
+
 
 function LoginPage() {
+    const { formFields, handleFieldChange, resetFields, validateForm, errors } = useFormFields<LoginValues>({
+        email: '',
+        password: '',
+    });
+    const [error, setError] = useState<string>();
 
+    const [isPending, startTransition] = useTransition();
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        // Handle form submission
+        setError(undefined);
+        const validationErrors = validateForm(formFields, loginSchema)
+        if (Object.keys(validationErrors).length === 0) {
+            console.log('Form is valid. Submitting:', formFields);
+            // Submit the form data
+            startTransition(async () => {
+                const { error } = await login(formFields);
+                if (error) setError(error);
+            });
+        }
+        resetFields()
+    };
     return (
         <div className="flex items-center justify-center w-full h-screen">
             <div  >
@@ -16,19 +44,34 @@ function LoginPage() {
                     <h1 className="flex items-center text-2xl font-bold">Login Page.<br /> Welcome to <Link href={'/'}><Image src={'/logo.svg'} className="bg-cover" width={150} height={50} alt="logo" /></Link></h1>
                     <p className="py-3 text-sm text-gray-600">Don’t have an account?<Link href={'/register'} className="px-1 italic text-blue-600 transition-all duration-200 cursor-pointer focus:text-blue-700 hover:underline hover:text-blue-500">Create an account.</Link></p>
                 </div>
-                <div className='login-forms'>
+
+                <form className='login-forms' onSubmit={handleSubmit}>
                     <div className="grid w-full max-w-sm items-center gap-1.5 pt-4">
                         <Label htmlFor="email">Email</Label>
-                        <Input type="email" id="email" placeholder="Email" className="border-solid" />
+                        <Input type="email"
+                            name="email"
+                            value={formFields.email}
+                            onChange={handleFieldChange}
+                            placeholder="Email" className="border-solid" />
+                        {errors.email && <Label className="text-destructive">{errors.email[0]}</Label>}
+
                     </div>
                     <div className="grid w-full max-w-sm items-center gap-1.5 pt-4">
                         <Label htmlFor="password">Password</Label>
-                        <PasswordInput id="password" placeholder="Password" className="border-solid" />
+                        <PasswordInput
+                            name="password"
+                            value={formFields.password}
+                            onChange={handleFieldChange}
+                            placeholder="Password" className="border-solid" />
+                        {errors.password && <Label className="text-destructive">{errors.password[0]}</Label>}
                     </div>
                     <div className="grid w-full max-w-sm items-center gap-1.5 pt-6">
-                        <Button>Login</Button>
+                        <LoadingButton loading={isPending} type="submit" className="w-full">
+                            Log in
+                        </LoadingButton>
+                        {error ? <Label className="text-destructive">{error}</Label> : null}
                     </div>
-                </div>
+                </form>
                 <div className="w-full max-w-sm p-4">
                     <p className="flex justify-center text-sm text-gray-600">Did you forget your password?<a className="px-1 italic text-blue-600 cursor-pointer">Reset it now.</a></p>
                 </div>

@@ -1,8 +1,8 @@
-import Header from "./components/Header";
-import { HeroSlider } from './components/Slider'
-import Section_store from "./components/Section";
-import SweaterSection from "./components/Section/sweater-section";
-import Footer from "./components/Footer";
+import Header from "../components/Header";
+import { HeroSlider } from '../components/Slider'
+import Section_store from "../components/Section";
+import SweaterSection from "../components/Section/sweater-section";
+import Footer from "../components/Footer";
 
 
 

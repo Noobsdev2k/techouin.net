@@ -1,8 +1,8 @@
-import Header from '@/app/components/Header'
-import { ThumbSlider } from '@/app/components/Slider'
+import Header from '@/components/Header'
+import { ThumbSlider } from '@/components/Slider'
 import React from 'react'
 import StyleWith from './style-with'
-import Footer from '@/app/components/Footer'
+import Footer from '@/components/Footer'
 
 export async function generateStaticParams() {
     const posts = await fetch('https://fakestoreapi.com/products').then((res) => res.json())

@@ -1,5 +1,5 @@
 'use client'
-import { ProductCard } from '@/app/components/Slider'
+import { ProductCard } from '@/components/Slider'
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
