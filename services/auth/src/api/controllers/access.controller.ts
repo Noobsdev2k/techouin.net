@@ -19,5 +19,19 @@ class AccessController {
       metadata: await accessServices.createRole(req.body)
     })
   }
+  create_resource = async (req: IRequest, res: Response, next: NextFunction) => {
+    CREATED({
+      res,
+      message: 'Create Resource Successful',
+      metadata: await accessServices.createResource(req.body)
+    })
+  }
+  getAll_resource = async (req: IRequest, res: Response, next: NextFunction) => {
+    CREATED({
+      res,
+      message: 'Get List Resource Successful',
+      metadata: await accessServices.listResource(req.query)
+    })
+  }
 }
 export default new AccessController()

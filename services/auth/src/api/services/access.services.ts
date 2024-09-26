@@ -4,7 +4,7 @@ import { hashPassword } from '@/utils'
 import { createTokenPair, generateKeyPair } from '@/helpers/auth'
 import keyTokenServices from './keyToken.services'
 import roleModel from '@/databases/models/role.model'
-import { createRole } from '@/utils/role.repo'
+import { createResource, createRole, listResource } from '@/utils/role.repo'
 
 class AccessService {
   createAdmin = async (payload: any): Promise<any> => {
@@ -59,8 +59,22 @@ class AccessService {
     if (existingRole) {
       throw new Api401Error('Role with this name already exists.')
     }
-    const newRole = createRole({ name, slug, description, grants })
+    const newRole = await createRole({ name, slug, description, grants })
     return newRole
+  }
+
+  //create resource
+  createResource = async (payload: any) => {
+    const { name, slug, description } = payload
+    // check admin
+    const newResource = await createResource({ name, slug, description })
+    return newResource
+  }
+  //get all resource
+  listResource = async ({ limit = 50, page = 1, filter = {} }) => {
+    // check admin
+    const newResource = await listResource({ limit, page, filter })
+    return newResource
   }
 }
 export default new AccessService()

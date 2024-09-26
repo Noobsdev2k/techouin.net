@@ -37,8 +37,6 @@ class AuthController {
     OK({ res, message: 'Logout success', metadata: (await AuthService.logout(req.keyStore)) as any })
   }
   refreshToken = async (req: IRequest, res: Response, next: NextFunction) => {
-    console.log(req)
-
     OK({
       res,
       message: 'Get new token successfully',
@@ -47,6 +45,13 @@ class AuthController {
         user: req.user,
         keyStore: req.keyStore
       })) as any
+    })
+  }
+  googleLogin = async (req: Request, res: Response, next: NextFunction) => {
+    OK({
+      res,
+      message: 'Login with google is Successful!!',
+      metadata: (await AuthService.googleLogin(req.body)) as any
     })
   }
 }

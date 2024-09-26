@@ -101,6 +101,7 @@ services:
     volumes:
       - ./services/auth:/app/services/auth
       - /app/services/auth/node_modules
+    restart: unless-stopped
     depends_on:
       - mongo
       - rabbit
@@ -112,6 +113,7 @@ services:
     build:
       context: ./services/store
       dockerfile: Dockerfile
+    restart: unless-stopped
     volumes:
       - ./services/store:/app/services/store
       - /app/services/store/node_modules
@@ -126,6 +128,7 @@ services:
     build:
       context: ./services/checkout
       dockerfile: Dockerfile
+    restart: unless-stopped
     volumes:
       - ./services/checkout:/app/services/checkout
       - /app/services/checkout/node_modules

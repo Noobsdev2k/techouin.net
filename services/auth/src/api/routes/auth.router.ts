@@ -6,6 +6,7 @@ import { validateAdminRegister, validateRegister } from '../middlewares/validate
 import accessController from '../controllers/access.controller'
 import { grantAccess } from '../middlewares/auth.middleware'
 import { ActionType } from '@/utils'
+import userController from '../controllers/user.controller'
 
 const router = express.Router()
 
@@ -17,21 +18,19 @@ router.post('/signup', asyncHandler(validateRegister), asyncHandler(AuthControll
 router.post('/resend_otp', asyncHandler(AuthController.resendOtp))
 router.post('/verify_email', asyncHandler(AuthController.verifyEmail))
 router.post('/login', asyncHandler(AuthController.login))
-router.post('/google_login')
+router.post('/auth/google', asyncHandler(AuthController.googleLogin))
 router.post('/facebook_login')
-
+router.post('/create_role', asyncHandler(accessController.create_role))
 router.use(asyncHandler(Authentication))
 router.post('/logout', asyncHandler(AuthController.logout))
-router.get('/getProfile', asyncHandler(grantAccess(ActionType.READ, 'Profile')), (req: Request, res: Response) => {
-  return res.status(200).json({ status: 'Welcome to profile' })
-})
+router.get('/getProfile', asyncHandler(userController.getProfile))
 router.post('/refresh_token', asyncHandler(AuthController.refreshToken))
 
 //middleware key create admin
 router.post('/create_admin', asyncHandler(validateAdminRegister), asyncHandler(accessController.signup))
 
 //create role
-router.post('/create_role', asyncHandler(accessController.create_role))
+
 router.patch('/role/:roleId')
 router.get('/role')
 

@@ -20,11 +20,18 @@ export const createResource = async ({ name = 'profile', slug = 'p00001', descri
   }
 
   // 2. Create and save the new resource
-  const newResource = resourceModel.create({ srcName: name, srcSlug: slug, srcDescription: description })
+  const newResource = await resourceModel.create({ srcName: name, srcSlug: slug, srcDescription: description })
 
   return newResource
 }
 
+export const listResource = async ({ limit, page, filter }: any) => {
+  const skip = (page - 1) * limit
+  // 2. Create and save the new resource
+  const newResource = await resourceModel.find(filter).sort({ updateAt: -1 }).skip(skip).limit(limit).lean()
+
+  return newResource
+}
 export const getRoleListOfUser = async (userId = '') => {
   try {
     // get role of user

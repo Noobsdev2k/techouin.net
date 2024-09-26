@@ -195,7 +195,60 @@ class AuthService {
   }
 
   // google login
-  googleLogin = async (payload: any) => {}
+  googleLogin = async (payload: any) => {
+    const { email, name, avatar, token, phone } = payload
+    const isUser = await userModel.findOne({ email }).lean()
+    if (isUser) {
+      await userModel.findByIdAndUpdate(isUser._id, { verify: true })
+      const { privateKey, publicKey } = generateKeyPair()
+      const { _id: userId, roles } = isUser
+      const role = await roleModel.findOne({ _id: roles })
+      const tokens = await createTokenPair({ userId, email, role }, publicKey, privateKey)
+      await keyTokenServices.createKeyToken({
+        refreshToken: tokens?.refreshToken,
+        userId,
+        publicKey,
+        privateKey
+      })
+      return {
+        isUser,
+        tokens
+      }
+    } else {
+      const password = email + token
+      const hashPass = await hashPassword(password)
+      //Get the default "user" role (assuming it exists)
+      const defaultRole = await roleModel.findOne({ name: 'user' })
+      if (!defaultRole) {
+        throw new Api401Error('Default "user" role not found!')
+      }
+      const newUser = await userModel.create({
+        name,
+        email,
+        password: hashPass,
+        avatar,
+        roles: defaultRole,
+        verify: true
+      })
+      if (newUser) {
+        const { privateKey, publicKey } = generateKeyPair()
+        const { _id: userId, roles } = newUser
+        const role = await roleModel.findOne({ _id: roles })
+        const tokens = await createTokenPair({ userId, email, role }, publicKey, privateKey)
+        await keyTokenServices.createKeyToken({
+          refreshToken: tokens?.refreshToken,
+          userId,
+          publicKey,
+          privateKey
+        })
+        return {
+          isUser: newUser,
+          tokens
+        }
+      }
+    }
+    return {}
+  }
 
   // facebook login
   facebookLogin = async (payload: any) => {}

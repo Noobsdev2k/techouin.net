@@ -20,8 +20,7 @@ const userSchema = new Schema(
     },
     phone: {
       type: String,
-      unique: true,
-      trim: true
+      default: ''
     },
     avatar: {
       type: String,
